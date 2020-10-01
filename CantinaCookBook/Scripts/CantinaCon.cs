@@ -51,21 +51,34 @@ namespace CantinaCookBook.Scripts
         public DataTable getSelect(string consulta)
         {
 
-            DataTable dt = null;
-
-            using (SqlCommand cmd = new SqlCommand(consulta, this._con))
+            if (!ConfigurationManager.ConnectionStrings["TCCantinaConnectionString"].ToString().Equals(""))
             {
 
-                this._con.Open();
+                DataTable _dt = new DataTable();
+                consulta = consulta.Trim();
 
-                SqlDataAdapter adap = new SqlDataAdapter(cmd);
-                adap.Fill(dt);
+                using (SqlCommand cmd = new SqlCommand(consulta, this._con))
+                {
+
+                    _con.Open();
+
+                    SqlDataAdapter adap = new SqlDataAdapter(cmd);
+                    adap.Fill(_dt);
+
+
+                }
+
+                _con.Close();
+
+                return _dt;
 
             }
+            else
+            {
 
-            this._con.Close();
+                throw new InvalidOperationException("Não foi configurado a conexão com o banco de dados.");
 
-            return dt;
+            }
 
         }
 

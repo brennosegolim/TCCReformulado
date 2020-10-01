@@ -33,7 +33,8 @@
                     <asp:LinkButton OnClick="lnkHome_Click" ID="lnkHome" CssClass="brand-logo" style="margin-left:5px;" runat="server"><i class="material-icons dp48">home</i>Cantina Cook Book</asp:LinkButton>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a href="sass.html"></a></li>
-                        <li><asp:LinkButton ID="lnkCadastros" runat="server" Text="Área do Cliente" OnClick="lnkCadastros_Click"></asp:LinkButton></li>
+                        <li id="clienteOption" runat="server"><asp:LinkButton CssClass="dropdown-trigger" data-target="dropdown1" ID="usuarioNome" runat="server" onclientclick="return false;" autopostback="false" xmlns:asp="#unknown"><i class="material-icons right">arrow_drop_down</i></asp:LinkButton></li>
+                        <li id="acessoCliente" runat="server"><asp:LinkButton ID="lnkCadastros" runat="server" Text="Área do Cliente" OnClick="lnkCadastros_Click"></asp:LinkButton></li>
                     </ul>
                 </div>
             </nav>
@@ -101,6 +102,43 @@
                     </div>
                 </div>
             </footer>
+            <script id="formFunctions">
+
+                $(document).ready(pageLoad());
+
+                function pageLoad() {
+
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var elems = document.querySelectorAll('.dropdown-trigger');
+                        var instances = M.Dropdown.init(elems, options);
+                    });
+
+                }
+
+                function verificaSessao() {
+
+                    $.ajax({
+
+                        type: "POST",
+                        url: "RegistrarUsuario.aspx/verificaSessao",
+                        contentType: "application/json; charset=utf8",
+                        dataType: "json",
+                        success: function (resposta) {
+
+                            if (resposta.d != ""){
+
+                                $("#usuarioNome").text(resposta.d);
+                                $("#lnkCadastros").hide();
+
+                            }
+
+                        }
+
+                    })
+
+                }
+
+            </script>
         </form>
     </body>
 </html>

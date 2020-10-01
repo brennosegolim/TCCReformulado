@@ -42,6 +42,33 @@ namespace CantinaCookBook
         protected global::System.Web.UI.WebControls.LinkButton lnkHome;
 
         /// <summary>
+        /// Controle clienteOption.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl clienteOption;
+
+        /// <summary>
+        /// Controle usuarioNome.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton usuarioNome;
+
+        /// <summary>
+        /// Controle acessoCliente.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl acessoCliente;
+
+        /// <summary>
         /// Controle lnkCadastros.
         /// </summary>
         /// <remarks>

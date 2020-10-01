@@ -3,7 +3,7 @@ using CantinaCookBook.Scripts;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace CantinaTCC.Controller
+namespace CantinaCookBook.Controller
 {
     public class ClienteCon
     {
@@ -144,6 +144,41 @@ namespace CantinaTCC.Controller
         }
 
         /// <summary>
+        /// Método para deletar registros da tabela cliente.
+        /// </summary>
+        /// <param name="idCliente">Inteiro referente ao identificador do cliente.</param>
+        /// <returns>Verdadeiro se o registro for deletado.</returns>
+        public bool DeletarCliente(int idCliente)
+        {
+
+            //Variável do tipo inteiro para receber a quantidade de linhas afetadas.
+            int linhas;
+
+            //Utilizando da classe SqlCommand para executar as procedures.
+            //Nota: O uso do using se deve a sua garantia de liberação dos recursos após seu uso.
+            using (SqlCommand cmd = new SqlCommand("DeleteCliente", _con))
+            {
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@IdCliente", idCliente);
+
+                //Abrindo a conexão com o banco de dados.
+                _con.Open();
+
+                //executando o comando e retornando a quantidade de linhas afetadas.
+                linhas = cmd.ExecuteNonQuery();
+
+            }
+
+            //Encerrando a conexão com o banco de dados.
+            _con.Close();
+
+            //Retornando verdadeiro se o algum registro foi afetado.
+            return (linhas > 0);
+
+        }
+
+        /// <summary>
         /// Método para retornar a seleção de todos clientes.
         /// </summary>
         /// <returns>Objeto do tipo DataTable contendo os registros da tabela Cliente.</returns>
@@ -216,7 +251,6 @@ namespace CantinaTCC.Controller
             return dtbd;
 
         }
-
 
         #endregion
 

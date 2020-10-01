@@ -8,17 +8,20 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title>.: <asp:Literal ID="litNome" runat="server"></asp:Literal> :.</title>
 
-        <!-- Includes CSS -->
-        <link href="CSS/materialize.css" rel="stylesheet" />
-        <link href="CSS/materialize.min.css" rel="stylesheet" />
-        <link href="CSS/CantinaEstilos.css" rel="stylesheet" />
+        <!-- Icones -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 
-        <!-- Inscludes JavaScript -->
-        <script src="JS/jsFunctions.js"></script>
-        <script src="JS/materialize.js"></script>
-        <script src="JS/materialize.min.js"></script>
-        <!-- Jquery -->
-        <script src="JS/jquery-3.5.1.min.js"></script>
+        <!-- CSS  -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link href="../CSS/CantinaEstilos.css" rel="stylesheet" />
+        <link href="../CSS/materialize.css" rel="stylesheet" />
+        <link href="../CSS/materialize.min.css" rel="stylesheet" />
+
+        <!-- JS -->
+        <script src="../JS/jquery-3.5.1.min.js"></script>
+        <script src="../JS/materialize.js"></script>
+        <script src="../JS/materialize.min.js"></script>
+        <script src="../JS/jsFunctions.js"></script>
 
         <!-- Cabeçalho das páginas criadas -->
         <asp:ContentPlaceHolder ID="head" runat="server">
@@ -34,7 +37,7 @@
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a href="sass.html"></a></li>
                         <li><asp:LinkButton ID="lnkCadastros" runat="server" Text="Cadastros" OnClick="lnkCadastros_Click"></asp:LinkButton></li>
-                        <li><asp:LinkButton ID="lnkSair" runat="server" OnClick="sair" Text="Logout"></asp:LinkButton></li>
+                        <li><asp:LinkButton ID="lnkSair" runat="server" OnClick="lnkSair_Click" Text="Logout"></asp:LinkButton></li>
                     </ul>
                 </div>
             </nav>
@@ -51,6 +54,9 @@
                     </div>
                 </div>
             </footer>
+            <asp:ContentPlaceHolder ID="scripts" runat="server">
+
+            </asp:ContentPlaceHolder>
             <script type="text/javascript" id="formJS">
 
                 $(document).ready(function () {

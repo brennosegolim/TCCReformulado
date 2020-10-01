@@ -39,6 +39,10 @@
                             <div class="col s12 offset-s2" style="margin-top:15px;" runat="server">
                                 <div class="col s6 offset-s2">Acesso ao sistema.</div>
                             </div>
+                            <div class="col s8 offset-s2" runat="server" id="dvPanels">
+                                <div class="card-panel #a5d6a7 green lighten-3" style="text-align:center;" id="dvSucesso" runat="server"></div>
+                                <div class="card-panel red lighten-3" style="text-align:center;" id="dvAlerta" runat="server"></div>
+                            </div>
                             <div class="col s12 offset-s2" runat="server">
                                 <div class="col s12 m8 offset-m1 xl7 offset-xl1" runat="server">
                                     <div class="input-field col s12" runat="server">

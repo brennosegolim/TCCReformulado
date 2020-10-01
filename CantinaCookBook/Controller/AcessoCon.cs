@@ -3,7 +3,7 @@ using CantinaCookBook.Scripts;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace CantinaTCC.Controller
+namespace CantinaCookBook.Controller
 {
     public class AcessoCon
     {
@@ -128,6 +128,40 @@ namespace CantinaTCC.Controller
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@IdAcesso", acesso.IdAcesso);
+
+                //Abrindo a conexão com o banco de dados.
+                _con.Open();
+
+                //Executando a procedure e recebendo quantidade de linhas afetadas.
+                linhas = cmd.ExecuteNonQuery();
+
+            }
+
+            //Encerrando conexão com o banco de dados.
+            _con.Close();
+
+            return (linhas > 0);
+
+        }
+
+        /// <summary>
+        /// Método para deletar registros da tabela acesso.
+        /// </summary>
+        /// <param name="acesso">Objeto do tipo Acesso.</param>
+        /// <returns>Verdadeiro se deletar algum registro.</returns>
+        public bool DeletarAcesso(int idAcesso)
+        {
+
+            //Variável do tipo inteiro para receber a quantidade de linhas afetadas.
+            int linhas;
+
+            //Utilizando da classe SqlCommand para executar as procedures.
+            //Nota: O uso do using se deve a sua garantia de liberação dos recursos após seu uso.
+            using (SqlCommand cmd = new SqlCommand("DeleteAcesso", _con))
+            {
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@IdAcesso", idAcesso);
 
                 //Abrindo a conexão com o banco de dados.
                 _con.Open();

@@ -1,16 +1,3 @@
---Verificando o se a Base de dados já existe e deletando a mesma.
-
-IF EXISTS( SELECT Name 
-                 FROM sys.databases 
-				WHERE Name = 'TCCantina' )
-BEGIN
-
-	DROP DATABASE TCCantina
-
-END
-
-GO
-
 /* DATABASE */
 --Criando base de dados.
 IF NOT EXISTS( SELECT Name 
@@ -40,11 +27,12 @@ IF NOT EXISTS( SELECT Name
 
 BEGIN
 
-	CREATE TABLE Cliente ( IdCliente INT IDENTITY(1,1) NOT NULL,
-								Nome VARCHAR(100) NOT NULL,
-							   Email VARCHAR(70) NULL,
-								 CPF VARCHAR(11) NULL,
-					   IdResponsavel INT NULL
+	CREATE TABLE Cliente ( IdCliente INT IDENTITY(1,1)  NOT NULL,
+								Nome VARCHAR(100)       NOT NULL,
+							   Email VARCHAR(70) UNIQUE NULL,
+								 CPF VARCHAR(11)        NULL,
+						 Autenticado BIT DEFAULT 0      NOT NULL ,
+					   IdResponsavel INT                NULL
 				   
 		   CONSTRAINT Pk_IdCliente PRIMARY KEY CLUSTERED (IdCliente))
 
@@ -52,8 +40,7 @@ END
 
 GO
 
---Criando a tabela de login
-
+--Criando a tabela de acesso(login)
 IF NOT EXISTS( SELECT Name 
                  FROM SysObjects
 				WHERE Name = 'Acesso'
@@ -63,11 +50,32 @@ BEGIN
 
 	CREATE TABLE Acesso ( IdAcesso INT IDENTITY(1,1) NOT NULL,
 						   [Login] VARCHAR(30)       NOT NULL,
-							 Senha VARCHAR(20)       NOT NULL,
-						 IdCliente INT               NOT NULL 
+							 Senha VARCHAR(100)       NOT NULL,
+							 Nivel VARCHAR(5)        NOT NULL,
+						 IdCliente INT               NOT NULL
 					 
 		   CONSTRAINT PK_IdAcesso PRIMARY KEY CLUSTERED (IdAcesso),
 		   CONSTRAINT FK_IdAcesso_IdCliente FOREIGN KEY (IdCliente) REFERENCES Cliente(IdCLiente))
+
+END
+
+GO
+
+--Tabela de Limite de Gasto
+IF NOT EXISTS( SELECT Name 
+                 FROM SysObjects
+				WHERE Name = 'ClienteLimite'
+				  AND Type = 'U')
+
+BEGIN
+
+	CREATE TABLE ClienteLimite ( IdClienteLimite INT IDENTITY(1,1) NOT NULL,
+						               IdCliente INT NOT NULL,
+							               Valor DECIMAL(15,2) NOT NULL,
+							              [Data] DATETIME NOT NULL									
+					 
+		   CONSTRAINT PK_IdClienteLimite PRIMARY KEY CLUSTERED (IdClienteLimite),
+		   CONSTRAINT FK_IdClienteLimite_IdCliente FOREIGN KEY (IdCliente) REFERENCES Cliente(IdCLiente))
 
 END
 
@@ -82,9 +90,9 @@ IF NOT EXISTS( SELECT Name
 BEGIN
 
 	CREATE TABLE Produto ( IdProduto INT IDENTITY(1,1) NOT NULL,
-						   Descricao VARCHAR(150) NOT NULL,
-							   Preco DECIMAL(15,2) NOT NULL,
-						  Observacao VARCHAR(MAX) NULL
+						   Descricao VARCHAR(150)      NOT NULL,
+							   Preco DECIMAL(15,2)     NOT NULL,
+						  Observacao VARCHAR(MAX)      NULL
 					  
 		   CONSTRAINT PK_IdProduto PRIMARY KEY CLUSTERED (IdProduto))
 
@@ -102,9 +110,9 @@ BEGIN
 
 	
 	CREATE TABLE Venda ( IdVenda INT IDENTITY(1,1) NOT NULL,
-						  [Data] DATETIME NOT NULL,
-					  ValorTotal DECIMAL(15,2) NOT NULL,
-					   IdCliente INT NOT NULL
+						  [Data] DATETIME          NOT NULL,
+					  ValorTotal DECIMAL(15,2)     NOT NULL,
+					   IdCliente INT               NOT NULL
 				  
 		   CONSTRAINT PK_IdVenda PRIMARY KEY CLUSTERED (IdVenda),
 		   CONSTRAINT FK_IdVenda_IdCliente FOREIGN KEY (IdCliente) REFERENCES Cliente(IdCliente))
@@ -123,11 +131,11 @@ IF NOT EXISTS( SELECT Name
 BEGIN
 
 	CREATE TABLE Produto_Venda ( IdProduto_Venda INT IDENTITY(1,1) NOT NULL,
-									   IdProduto INT NOT NULL,
-										 IdVenda INT NOT NULL,
-										   Valor DECIMAL(15,2) NOT NULL,
-										  [Data] DATETIME NOT NULL,
-									  Quantidade INT NOT NULL
+									   IdProduto INT               NOT NULL,
+										 IdVenda INT               NOT NULL,
+										   Valor DECIMAL(15,2)     NOT NULL,
+										  [Data] DATETIME          NOT NULL,
+									  Quantidade INT               NOT NULL
 								  
 			CONSTRAINT PK_IdProduto_Venda PRIMARY KEY CLUSTERED (IdProduto_Venda),
 			CONSTRAINT FK_IdProduto_Venda_IdProduto FOREIGN KEY (IdProduto) REFERENCES Produto(IdProduto),
@@ -231,14 +239,15 @@ GO
 CREATE OR ALTER PROCEDURE InsertAcesso(
 
 	@Login VARCHAR(30),
-	@Senha VARCHAR(20),
-	@IdCliente INT
+	@Senha VARCHAR(100),
+	@IdCliente INT,
+	@Nivel VARCHAR(5)
 
 ) AS
 BEGIN
 
-	INSERT INTO Acesso([Login],Senha,IdCliente) 
-	VALUES (@Login,@Senha,@IdCliente)
+	INSERT INTO Acesso([Login],Senha,IdCliente,Nivel) 
+	VALUES (@Login,@Senha,@IdCliente,@Nivel)
 
 END
 
@@ -249,7 +258,8 @@ CREATE OR ALTER PROCEDURE UpdateAcesso(
 
 	@IdAcesso INT,
 	@Login VARCHAR(30),
-	@Senha VARCHAR(20),
+	@Senha VARCHAR(100),
+	@Nivel VARCHAR(5),
 	@IdCliente INT
 
 )AS
@@ -258,6 +268,7 @@ BEGIN
 	UPDATE Acesso
 	   SET [Login]   = @Login,
 	       Senha     = @Senha,
+		   Nivel     = @Nivel,
 		   IdCliente = @IdCliente
 	 WHERE IdAcesso = @IdAcesso
 
@@ -312,7 +323,7 @@ GO
 CREATE OR ALTER PROCEDURE LoginAcesso(
 
 	@Login VARCHAR(30),
-	@Senha VARCHAR(20)
+	@Senha VARCHAR(100)
 
 )AS
 BEGIN
@@ -589,9 +600,9 @@ INSERT INTO Cliente (Nome,Email,CPF,IdResponsavel) VALUES ('Pedro Silva','pedro_
 INSERT INTO Cliente (Nome,Email,CPF,IdResponsavel) VALUES ('Lucas de Jesus','jesusluquinhas@gmail.com','06300365000',1)
 
 --Acesso
-INSERT INTO Acesso ([Login],Senha,IdCliente) VALUES ('BFFSegolim','abc123',1)
-INSERT INTO Acesso ([Login],Senha,IdCliente) VALUES ('PSilva','abc123',2)
-INSERT INTO Acesso ([Login],Senha,IdCliente) VALUES ('LJesus','abc123',3)
+INSERT INTO Acesso ([Login],Senha,Nivel,IdCliente) VALUES ('BFFSegolim','e99a18c428cb38d5f260853678922e03','A',1)
+INSERT INTO Acesso ([Login],Senha,Nivel,IdCliente) VALUES ('PSilva','e99a18c428cb38d5f260853678922e03','U',2)
+INSERT INTO Acesso ([Login],Senha,Nivel,IdCliente) VALUES ('LJesus','e99a18c428cb38d5f260853678922e03','U',3)
 
 --Produto 
 INSERT INTO Produto (Descricao,Preco,Observacao) VALUES ('Salgado',4.00,'Salgado sabores diversos')
