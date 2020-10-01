@@ -1,4 +1,6 @@
-﻿using CantinaCookBook.Scripts;
+﻿using CantinaCookBook.Controller;
+using CantinaCookBook.Models;
+using CantinaCookBook.Scripts;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -119,8 +121,8 @@ namespace CantinaCookBook.View
 
                     html += " <tr>                                                         "
                           + "     <td>" + nomeProduto + "</td>                             "
-                          + "     <td style=\"text-align:center;\">" + valor + "</td>      "
-                          + "     <td style=\"text-align:center;\">" + quantidade + "</td> "
+                          + "     <td>" + valor + "</td>      "
+                          + "     <td>" + quantidade + "</td> "
                           + "     <td>" + dataSql + "</td>                                 "
                           + "     <td>" + hora + "</td>                                    "
                           + " </tr>                                                        ";
@@ -207,6 +209,42 @@ namespace CantinaCookBook.View
             dvUsuario.Visible = true;
             dvSelectDependente.Visible = false;
             gerarHistorico(idCliente, "0");
+
+        }
+
+        protected void btnConfirmarLimite_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+
+                int idCliente = int.Parse(cbxDepentes.SelectedValue);
+                decimal valorLimite = new decimal(0.0);
+                Decimal.TryParse(txtPrecoLimite.Value, out valorLimite);
+                string dataAtual = DateTime.Now.ToString();
+
+                ClienteLimiteCon clienteLimiteCon = new ClienteLimiteCon();
+                ClienteLimite clienteLimite = new ClienteLimite();
+                
+                clienteLimite.IdCliente = idCliente;
+                clienteLimite.Valor = valorLimite;
+                clienteLimite.Data = dataAtual;
+
+                clienteLimiteCon.AdicionarLimite(clienteLimite);
+
+            }
+            catch (Exception err)
+            {
+
+                string msgErro = "";
+
+                msgErro = err.ToString();
+
+                msgErro = msgErro.Replace("\n", "").Replace("\r", "");
+
+                Response.Write("<script type=\"text/javascriot\">alert('Não foi possível adicionar um limite, entre em contato com o suporte.');Console.log('Erro: "+ msgErro +"')<script>");
+
+            }
 
         }
     }

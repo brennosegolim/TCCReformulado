@@ -60,15 +60,6 @@ namespace CantinaCookBook.View
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvNomeUsuario;
 
         /// <summary>
-        /// Controle dvLimiteCredito.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvLimiteCredito;
-
-        /// <summary>
         /// Controle dvHistórico.
         /// </summary>
         /// <remarks>
@@ -85,5 +76,32 @@ namespace CantinaCookBook.View
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tableHistorico;
+
+        /// <summary>
+        /// Controle dvLimiteCredito.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvLimiteCredito;
+
+        /// <summary>
+        /// Controle txtPrecoLimite.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtPrecoLimite;
+
+        /// <summary>
+        /// Controle btnConfirmarLimite.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnConfirmarLimite;
     }
 }

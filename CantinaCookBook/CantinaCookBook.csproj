@@ -160,6 +160,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controller\AcessoCon.cs" />
     <Compile Include="Controller\ClienteCon.cs" />
+    <Compile Include="Controller\ClienteLimiteCon.cs" />
     <Compile Include="Controller\ProdutoCon.cs" />
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
@@ -168,6 +169,7 @@
     <Compile Include="Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClienteLimite.cs" />
     <Compile Include="View\CadastroProduto.aspx.cs">
       <DependentUpon>CadastroProduto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

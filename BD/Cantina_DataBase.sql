@@ -594,6 +594,55 @@ END
 
 GO
 
+/* ClienteLimite */
+
+--Criando procedure de inserção de ClienteLimite.
+CREATE OR ALTER PROCEDURE InsertClienteLimite(
+
+	@IdCliente       INT,
+	@Valor DECIMAL(15,2),
+	@Data       DATETIME
+
+)AS
+BEGIN
+
+	INSERT INTO ClienteLimite(IdCliente,Valor,[Data])
+	VALUES (@IdCliente,@Valor,@Data)
+
+END
+
+GO
+
+--Criando Procedure para selecionar todos registros da tabela ClienteLimite
+CREATE OR ALTER PROCEDURE SelectClienteLimite
+AS
+BEGIN
+	
+	SELECT *
+	  FROM ClienteLimite
+
+END
+
+GO
+
+--Criando Procedure para selecionar um único registro da tabela ClienteLimite
+CREATE OR ALTER PROCEDURE SelectClienteLimiteById(
+
+	@IdCliente INT
+
+)
+AS
+BEGIN
+	
+	SELECT TOP 1 *
+	  FROM ClienteLimite
+	 WHERE IdCliente = @IdCliente
+	 ORDER BY [Data] DESC
+
+END
+
+GO
+
 --Clientes
 INSERT INTO Cliente (Nome,Email,CPF,IdResponsavel) VALUES ('Brenno Fernando Figueira Segolim','brennosegolim12@gmail.com','49368085803',NULL)
 INSERT INTO Cliente (Nome,Email,CPF,IdResponsavel) VALUES ('Pedro Silva','pedro_silva@gmail.com','90915795019',NULL)
@@ -627,3 +676,4 @@ SELECT * FROM Acesso
 SELECT * FROM Produto
 SELECT * FROM Venda
 SELECT * FROM Produto_Venda
+SELECT * FROM ClienteLimite
