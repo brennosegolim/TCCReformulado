@@ -21,9 +21,22 @@
                                     <div class="col s12 header" id="dvNomeUsuario" runat="server" style="text-align:center;text-transform:uppercase;font-size:xx-large"></div>
                                  </div>
                                 <div class="row">
-                                    <div id="dvHistórico" class="card col s12" style="min-height:300px;max-height:400px; overflow:auto;" runat="server">
+                                    <div id="dvHistórico" class="card col s12" style="min-height:400px;max-height:500px; overflow:auto;" runat="server">
                                         <div class="row">
                                             <div class="col s12" style="text-align:center;text-transform:uppercase;font-size:xx-large">Histórico</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="row">
+                                                <asp:Button ID="btnFiltroData" runat="server" CssClass="waves-effect waves-light btn-small" Text="Filtrar" OnClick="btnFiltroData_Click" />
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s2 offset-m5">
+                                                    <input type="date" id="txtFiltroData" runat="server">
+                                                </div>
+                                                <div class="col s1">
+                                                    <asp:Button ID="btnRealizarFiltro" runat="server" Text="Buscar" CssClass="waves-effect waves-light btn-small" OnClick="btnRealizarFiltro_Click"/>
+                                                </div>
+                                            </div>                                        
                                         </div>
                                         <div class="row">
                                             <div class="col s12" id="tableHistorico" runat="server"></div>
@@ -34,7 +47,7 @@
                                 <div class="row">
                                     <div id="dvLimiteCredito" class="card col s12" style="min-height:300px;max-height:300px;" runat="server">
                                         <div class="row">
-                                            <div class="col s12" style="text-align:center;text-transform:uppercase;font-size:xx-large">Limitar Crédito</div>
+                                            <div class="col s12" style="text-align:center;text-transform:uppercase;font-size:xx-large">Limitar Gastos</div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s4 offset-s4">
@@ -52,6 +65,7 @@
                         </div>
                     </div>
                     <br/>
+                    <br/>
                 </div>
             </main>
 </asp:Content>
@@ -59,7 +73,9 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
+
             $('select').formSelect();
+
         });
 
         $('.dinheiro').mask('#.##0,00', { reverse: true });

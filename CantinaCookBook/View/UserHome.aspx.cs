@@ -22,6 +22,9 @@ namespace CantinaCookBook.View
             if(!IsPostBack)
             {
 
+                txtFiltroData.Visible = false;
+                btnRealizarFiltro.Visible = false;
+
                 if (Session["Nome"] != null )
                 {
 
@@ -47,6 +50,7 @@ namespace CantinaCookBook.View
                         {
 
                             cbxDepentes.Items.Add(new ListItem("Selecione o Dependente.", ""));
+                            cbxDepentes.Items.Add(new ListItem("Eu", idCliente));
 
                             for (int i = 0; i < dt.Rows.Count; i++)
                             {
@@ -73,6 +77,7 @@ namespace CantinaCookBook.View
                 }
 
             }
+
         }
 
         private void gerarHistorico(string idCliente,string data)
@@ -95,7 +100,7 @@ namespace CantinaCookBook.View
 
             dt = con.getSelect(sql);
 
-            if (dt != null && dt.Rows.Count > 0)
+            if (dt != null)
             {
 
                 string html = " <table class=\"responsive-table highlight\"> "
@@ -201,6 +206,31 @@ namespace CantinaCookBook.View
 
         }
 
+        private void toggleFiltroData()
+        {
+
+            string idCliente = cbxDepentes.SelectedValue;
+
+            if (txtFiltroData.Visible) {
+
+                btnRealizarFiltro.Visible = false;
+                txtFiltroData.Visible = false;
+                txtFiltroData.Value = "";
+                btnFiltroData.Text = "Filtrar";
+                gerarHistorico(idCliente, "0");
+
+            } else
+            {
+
+                txtFiltroData.Value = DateTime.Now.ToString("yyyy-MM-dd");
+                btnRealizarFiltro.Visible = true;
+                txtFiltroData.Visible = true;
+                btnFiltroData.Text = "Esconder";
+
+            }
+
+        }
+
         protected void cbxDepentes_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -242,7 +272,29 @@ namespace CantinaCookBook.View
 
                 msgErro = msgErro.Replace("\n", "").Replace("\r", "");
 
-                Response.Write("<script type=\"text/javascriot\">alert('Não foi possível adicionar um limite, entre em contato com o suporte.');Console.log('Erro: "+ msgErro +"')<script>");
+            }
+
+        }
+
+        protected void btnFiltroData_Click(object sender, EventArgs e)
+        {
+
+            toggleFiltroData();
+
+        }
+
+        protected void btnRealizarFiltro_Click(object sender, EventArgs e)
+        {
+
+            string idCliente = cbxDepentes.SelectedValue;
+            string data = txtFiltroData.Value;
+
+            if (data.Length == 10)
+            {
+
+                data = data.Substring(8, 2) + "/" + data.Substring(5, 2) + "/" + data.Substring(0, 4);
+
+                gerarHistorico(idCliente, data);
 
             }
 
