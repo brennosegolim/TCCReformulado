@@ -144,6 +144,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="View\AutenticarUsuario.aspx" />
     <Content Include="View\CadastroProduto.aspx" />
     <Content Include="View\Cadastros.aspx" />
     <Content Include="View\CadastroUsuario.aspx" />
@@ -170,6 +171,13 @@
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\ClienteLimite.cs" />
+    <Compile Include="View\AutenticarUsuario.aspx.cs">
+      <DependentUpon>AutenticarUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\AutenticarUsuario.aspx.designer.cs">
+      <DependentUpon>AutenticarUsuario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\CadastroProduto.aspx.cs">
       <DependentUpon>CadastroProduto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

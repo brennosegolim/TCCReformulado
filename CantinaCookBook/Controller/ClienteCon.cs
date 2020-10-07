@@ -50,6 +50,9 @@ namespace CantinaCookBook.Controller
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Nome", cliente.Nome);
+                cmd.Parameters.AddWithValue("@DataNascimento", cliente.DataNascimento);
+                cmd.Parameters.AddWithValue("@Telefone", cliente.Telefone);
+                cmd.Parameters.AddWithValue("@Celular", cliente.Celular);
                 cmd.Parameters.AddWithValue("@Email", cliente.Email);
                 cmd.Parameters.AddWithValue("@CPF", cliente.CPF);
                 cmd.Parameters.AddWithValue("@IdResponsavel", cliente.IdResponsavel);
@@ -88,6 +91,9 @@ namespace CantinaCookBook.Controller
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@IdCliente", cliente.IdCliente);
                 cmd.Parameters.AddWithValue("@Nome", cliente.Nome);
+                cmd.Parameters.AddWithValue("@DataNascimento", cliente.DataNascimento);
+                cmd.Parameters.AddWithValue("@Telefone", cliente.Telefone);
+                cmd.Parameters.AddWithValue("@Celular", cliente.Celular);
                 cmd.Parameters.AddWithValue("@Email", cliente.Email);
                 cmd.Parameters.AddWithValue("@CPF", cliente.CPF);
                 cmd.Parameters.AddWithValue("@IdResponsavel", cliente.IdResponsavel);

@@ -29,9 +29,12 @@ BEGIN
 
 	CREATE TABLE Cliente ( IdCliente INT IDENTITY(1,1)  NOT NULL,
 								Nome VARCHAR(100)       NOT NULL,
-							   Email VARCHAR(70) UNIQUE NULL,
-								 CPF VARCHAR(11)        NULL,
-						 Autenticado BIT DEFAULT 0      NOT NULL ,
+				      DataNascimento DATE               NOT NULL,
+					        Telefone VARCHAR(20)        NOT NULL,
+							 Celular VARCHAR(20)        NOT NULL,
+							   Email VARCHAR(70) UNIQUE NOT NULL,
+								 CPF VARCHAR(11)        NOT NULL,
+						 Autenticado BIT DEFAULT 0      NOT NULL,
 					   IdResponsavel INT                NULL
 				   
 		   CONSTRAINT Pk_IdCliente PRIMARY KEY CLUSTERED (IdCliente))
@@ -152,16 +155,19 @@ GO
 --Criando procedure de inserção de cliente.
 CREATE OR ALTER PROCEDURE InsertCliente(
 
-	@Nome          VARCHAR(100),
-	@Email         VARCHAR(70),
-	@CPF           VARCHAR(11),
-	@IdResponsavel INT
+	@Nome           VARCHAR(100),
+	@DataNascimento DATE,
+	@Telefone       VARCHAR(20),
+	@Celular        VARCHAR(20),
+	@Email          VARCHAR(70),
+	@CPF            VARCHAR(11),
+	@IdResponsavel  INT
 
 ) AS
 BEGIN
 
-	INSERT INTO Cliente(Nome,Email,CPF,IdResponsavel) 
-	VALUES (@Nome,@Email,@CPF,@IdResponsavel)
+	INSERT INTO Cliente(Nome,DataNascimento,Telefone,Celular,Email,CPF,IdResponsavel) 
+	VALUES (@Nome,@DataNascimento,@Telefone,@Celular,@Email,@CPF,@IdResponsavel)
 
 END
 
@@ -172,6 +178,9 @@ CREATE OR ALTER PROCEDURE UpdateCliente(
 
 	@IdCliente     INT,
 	@Nome          VARCHAR(100),
+	@DataNascimento DATE,
+	@Telefone       VARCHAR(20),
+	@Celular        VARCHAR(20),
 	@Email         VARCHAR(70),
 	@CPF           VARCHAR(11),
 	@IdResponsavel INT
@@ -180,10 +189,13 @@ CREATE OR ALTER PROCEDURE UpdateCliente(
 BEGIN
 
 	UPDATE Cliente
-	   SET Nome          = @Nome,
-		   Email         = @Email,
-		   CPF           = @CPF,
-		   IdResponsavel = @IdResponsavel
+	   SET Nome           = @Nome,
+	       DataNascimento = @DataNascimento,
+		   Telefone       = @Telefone,
+		   Celular        = @Celular,
+		   Email          = @Email,
+		   CPF            = @CPF,
+		   IdResponsavel  = @IdResponsavel
 	 WHERE IdCliente = @IdCliente
 
 END
@@ -218,7 +230,7 @@ END
 GO
 
 --Criando procedure para retornar somente um cliente.
-CREATE OR ALTER PROCEDURE SelectClieteById(
+CREATE OR ALTER PROCEDURE SelectClienteById(
 
 	@IdCliente INT
 
@@ -644,31 +656,70 @@ END
 GO
 
 --Clientes
-INSERT INTO Cliente (Nome,Email,CPF,IdResponsavel) VALUES ('Brenno Fernando Figueira Segolim','brennosegolim12@gmail.com','49368085803',NULL)
-INSERT INTO Cliente (Nome,Email,CPF,IdResponsavel) VALUES ('Pedro Silva','pedro_silva@gmail.com','90915795019',NULL)
-INSERT INTO Cliente (Nome,Email,CPF,IdResponsavel) VALUES ('Lucas de Jesus','jesusluquinhas@gmail.com','06300365000',1)
+IF (SELECT COUNT(*) FROM Cliente) < 0
+
+BEGIN
+
+	INSERT INTO Cliente (Nome,DataNascimento,Telefone,Celular,Email,CPF,IdResponsavel) VALUES ('Brenno Fernando Figueira Segolim','15/06/1999','(14) 3491-1832','(14) 99737-1965','brennosegolim12@gmail.com','49368085803',NULL)
+	INSERT INTO Cliente (Nome,DataNascimento,Telefone,Celular,Email,CPF,IdResponsavel) VALUES ('Lucas de Jesus','10/01/1984','(14) 3441-5443','(14) 99899-1344','jesusluquinhas@gmail.com','06300365000',NULL)
+	INSERT INTO Cliente (Nome,DataNascimento,Telefone,Celular,Email,CPF,IdResponsavel) VALUES ('Pedro Silva','23/10/2010','(14) 3441-5443','(14) 99703-5465','pedro_silva@gmail.com','90915795019',2)
+
+	UPDATE Cliente SET Autenticado = 1 WHERE IdCliente = 1
+
+END
 
 --Acesso
-INSERT INTO Acesso ([Login],Senha,Nivel,IdCliente) VALUES ('BFFSegolim','e99a18c428cb38d5f260853678922e03','A',1)
-INSERT INTO Acesso ([Login],Senha,Nivel,IdCliente) VALUES ('PSilva','e99a18c428cb38d5f260853678922e03','U',2)
-INSERT INTO Acesso ([Login],Senha,Nivel,IdCliente) VALUES ('LJesus','e99a18c428cb38d5f260853678922e03','U',3)
+IF (SELECT COUNT(*) FROM Acesso) < 0
+
+BEGIN
+
+	INSERT INTO Acesso ([Login],Senha,Nivel,IdCliente) VALUES ('BFFSegolim','e99a18c428cb38d5f260853678922e03','A',1)
+	INSERT INTO Acesso ([Login],Senha,Nivel,IdCliente) VALUES ('PSilva','e99a18c428cb38d5f260853678922e03','U',2)
+	INSERT INTO Acesso ([Login],Senha,Nivel,IdCliente) VALUES ('LJesus','e99a18c428cb38d5f260853678922e03','U',3)
+
+END
 
 --Produto 
-INSERT INTO Produto (Descricao,Preco,Observacao) VALUES ('Salgado',4.00,'Salgado sabores diversos')
-INSERT INTO Produto (Descricao,Preco,Observacao) VALUES ('Copo de Refrigerante',2.00,'Coca-Cola ou Guaraná')
-INSERT INTO Produto (Descricao,Preco,Observacao) VALUES ('Bolo no pote',5.00,'Bolo de chocolate ou leite ninho.')
+IF (SELECT COUNT(*) FROM Produto) < 0
+
+BEGIN
+
+	INSERT INTO Produto (Descricao,Preco,Observacao) VALUES ('Salgado',4.00,'Salgado sabores diversos')
+	INSERT INTO Produto (Descricao,Preco,Observacao) VALUES ('Copo de Refrigerante',2.00,'Coca-Cola ou Guaraná')
+	INSERT INTO Produto (Descricao,Preco,Observacao) VALUES ('Bolo no pote',5.00,'Bolo de chocolate ou leite ninho.')
+
+END
 
 --Venda
-INSERT INTO Venda ([Data],ValorTotal,IdCliente) VALUES ('23-06-2020',6.00,1)
-INSERT INTO Venda ([Data],ValorTotal,IdCliente) VALUES ('23-06-2020',9.00,2)
-INSERT INTO Venda ([Data],ValorTotal,IdCliente) VALUES ('23-06-2020',2.00,3)
+IF (SELECT COUNT(*) FROM Venda) < 0
 
---Venda_Produto 
-INSERT INTO Produto_Venda ([Data],IdVenda,IdProduto,Valor,Quantidade) VALUES ('23-06-2020',1,1,4.00,1)
-INSERT INTO Produto_Venda ([Data],IdVenda,IdProduto,Valor,Quantidade) VALUES ('23-06-2020',1,2,2.00,1)
-INSERT INTO Produto_Venda ([Data],IdVenda,IdProduto,Valor,Quantidade) VALUES ('23-06-2020',2,1,4.00,1)
-INSERT INTO Produto_Venda ([Data],IdVenda,IdProduto,Valor,Quantidade) VALUES ('23-06-2020',2,3,5.00,1)
-INSERT INTO Produto_Venda ([Data],IdVenda,IdProduto,Valor,Quantidade) VALUES ('23-06-2020',3,2,2.00,1)
+	INSERT INTO Venda ([Data],ValorTotal,IdCliente) VALUES ('23-06-2020',6.00,1)
+	INSERT INTO Venda ([Data],ValorTotal,IdCliente) VALUES ('23-06-2020',9.00,2)
+	INSERT INTO Venda ([Data],ValorTotal,IdCliente) VALUES ('23-06-2020',2.00,3)
+
+END
+
+IF (SELECT COUNT(*) FROM Produto_Venda) < 0
+
+BEGIN
+
+	--Produto_Venda 
+	INSERT INTO Produto_Venda ([Data],IdVenda,IdProduto,Valor,Quantidade) VALUES ('23-06-2020',1,1,4.00,1)
+	INSERT INTO Produto_Venda ([Data],IdVenda,IdProduto,Valor,Quantidade) VALUES ('23-06-2020',1,2,2.00,1)
+	INSERT INTO Produto_Venda ([Data],IdVenda,IdProduto,Valor,Quantidade) VALUES ('23-06-2020',2,1,4.00,1)
+	INSERT INTO Produto_Venda ([Data],IdVenda,IdProduto,Valor,Quantidade) VALUES ('23-06-2020',2,3,5.00,1)
+	INSERT INTO Produto_Venda ([Data],IdVenda,IdProduto,Valor,Quantidade) VALUES ('23-06-2020',3,2,2.00,1)
+
+END
+
+--ClienteLimite
+IF (SELECT COUNT(*) FROM ClienteLimite) < 0
+
+BEGIN
+
+	INSERT INTO ClienteLimite (IdCliente,Valor,Data) VALUES (3,10.00,GETDATE())
+
+END
 
 --Selects
 SELECT * FROM Cliente

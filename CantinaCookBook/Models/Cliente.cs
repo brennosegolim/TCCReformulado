@@ -15,6 +15,21 @@
         public string Nome { get; set; }
 
         /// <summary>
+        /// Atributo da classe cliente referente ao nome. 
+        /// </summary>
+        public string DataNascimento { get; set; }
+
+        /// <summary>
+        /// Atributo da classe cliente referente ao nome. 
+        /// </summary>
+        public string Telefone { get; set; }
+
+        /// <summary>
+        /// Atributo da classe cliente referente ao nome. 
+        /// </summary>
+        public string Celular { get; set; }
+
+        /// <summary>
         /// Atributo da classe cliente referente ao Email.
         /// </summary>
         public string Email { get; set; }
@@ -28,6 +43,7 @@
         /// Atributo da classe cliente referente ao cliente responsável.
         /// </summary>
         public int IdResponsavel { get; set; }
+
         #endregion
 
         #region Métodos
@@ -40,6 +56,9 @@
 
             this.IdCliente = 0;
             this.Nome = "";
+            this.DataNascimento = "";
+            this.Telefone = "";
+            this.Celular = "";
             this.Email = null;
             this.CPF = null;
             this.IdCliente = 0;

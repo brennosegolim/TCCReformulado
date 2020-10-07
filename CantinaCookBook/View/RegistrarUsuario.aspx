@@ -20,6 +20,7 @@
         <script src="../JS/materialize.js"></script>
         <script src="../JS/materialize.min.js"></script>
         <script src="../JS/jsFunctions.js"></script>
+        <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
 
     </head>
     <body onload="iniciar()">
@@ -54,6 +55,29 @@
                                 <div class="col s12 offset-s2" runat="server">
                                     <div class="col s12 m8 offset-m1 xl7 offset-xl1" runat="server">
                                         <div class="input-field col s12" runat="server">
+                                            <i class="material-icons prefix">date_range</i>
+                                            <input maxlength="20" placeholder="" id="txtDataNascimento" type="text" class="validate date" data-position="top" data-tooltip="Data de Nascimento" runat="server"/>
+                                            <label for="txtDataNascimento" id="lblDataNascimento" runat="server">Data de Nascimento</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s12 offset-s2" runat="server">
+                                    <div class="col s12 m8 offset-m1 xl7 offset-xl1" runat="server">
+                                        <div class="input-field col s12" runat="server">
+                                            <i class="material-icons prefix">credit_card</i>
+                                            <input maxlength="11" placeholder="CPF" id="txtCPF" type="text" class="validate" data-position="top" data-tooltip="CPF" runat="server"/>
+                                            <label for="txtCPF" id="lblCPF" runat="server">CPF (sem pontuação)</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="col s12 offset-s2" style="margin-top:15px;" runat="server">
+                                    <div id="tituloContato" class="col s6 offset-s2 ">Informações de Contato.</div>
+                                </div>
+                                <br />
+                                <div class="col s12 offset-s2" runat="server">
+                                    <div class="col s12 m8 offset-m1 xl7 offset-xl1" runat="server">
+                                        <div class="input-field col s12" runat="server">
                                             <i class="material-icons prefix">email</i>
                                             <input maxlength="70" placeholder="E-mail" id="txtEmail" type="text" class="validate" data-position="top" data-tooltip="E-mail" onblur="verificaEmail()" runat="server"/>
                                             <label for="txtEmail" id="lblEmail" runat="server">Email</label>
@@ -63,9 +87,18 @@
                                 <div class="col s12 offset-s2" runat="server">
                                     <div class="col s12 m8 offset-m1 xl7 offset-xl1" runat="server">
                                         <div class="input-field col s12" runat="server">
-                                            <i class="material-icons prefix">credit_card</i>
-                                            <input maxlength="11" placeholder="CPF" id="txtCPF" type="text" class="validate" data-position="top" data-tooltip="CPF" runat="server"/>
-                                            <label for="txtCPF" id="lblCPF" runat="server">CPF</label>
+                                            <i class="material-icons prefix">local_phone</i>
+                                            <input maxlength="20" placeholder="Telefone" id="txtTelefone" type="text" class="validate phone_with_ddd" data-position="top" data-tooltip="Telefone" runat="server"/>
+                                            <label for="txtTelefone" id="lblTelefone" runat="server">Telefone</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s12 offset-s2" runat="server">
+                                    <div class="col s12 m8 offset-m1 xl7 offset-xl1" runat="server">
+                                        <div class="input-field col s12" runat="server">
+                                            <i class="material-icons prefix">smartphone</i>
+                                            <input maxlength="20" placeholder="Celular" id="txtCelular" type="text" class="validate cellphone" data-position="top" data-tooltip="Celular" runat="server"/>
+                                            <label for="txtCelular" id="lblCelular" runat="server">Celular</label>
                                         </div>
                                     </div>
                                 </div>
@@ -149,6 +182,10 @@
                     let nome = $("#txtNome").val();
                     let email = $("#txtEmail").val();
                     let cpf = $("#txtCPF").val();
+                    let dataNascimento = $("#txtDataNascimento").val();
+                    let telefone = $("#txtTelefone").val();
+                    let celular = $("#txtCelular").val();
+                    let patternData = /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/;
 
                     if (nome == "") {
 
@@ -169,6 +206,33 @@
                         confirmar = false;
                         mensagem += "Atenção ! por favor informe seu CPF.";
 
+                    }
+
+                    if (dataNascimento == "") {
+
+                        confirmar = false;
+                        mensagem += "Atenção ! por favor informe sua Data de Nascimento.";
+
+                    }
+
+                    if (telefone == "") {
+
+                        confirmar = false;
+                        mensagem += "Atenção ! por favor informe seu Telefone.";
+
+                    }
+
+                    if (celular == "") {
+
+                        confirmar = false;
+                        mensagem += "Atenção ! por favor informe seu Celular.";
+
+                    }
+
+                    if (!patternData.test(dataNascimento)) {
+                        alert("Digite a data no formato Dia/Mês/Ano");
+                        $("#txtDataNascimento").val("");
+                        return false;
                     }
 
                     if (confirmar) {
@@ -251,6 +315,9 @@
                             type: "POST",
                             url: "RegistrarUsuario.aspx/cadastrarUsuario",
                             data: "{   nome: '" + $("#txtNome").val() +
+                                "', dataNascimento: '" + $("#txtDataNascimento").val() +
+                                "', telefone: '" + $("#txtTelefone").val() +
+                                "', celular: '" + $("#txtCelular").val() +
                                 "', email: '" + $("#txtEmail").val() +
                                 "',   cpf: '" + $("#txtCPF").val() +
                                 "', usuario: '" + $("#txtUsuario").val() +
@@ -268,6 +335,7 @@
                                 } else {
 
                                     window.location = "../Index.aspx";
+                                    alert("Usuário Cadastrado com sucesso ! Aguarde o administrador do sistema analisar seu usuário !");
 
                                 }
 
@@ -338,6 +406,10 @@
                     }
 
                 }
+
+                $('.phone_with_ddd').mask('(00) 0000-0000');
+                $('.cellphone').mask('(00) 00000-0000');
+                $('.date').mask('00/00/0000');
 
             </script>
         </form>

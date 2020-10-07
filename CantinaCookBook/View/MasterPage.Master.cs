@@ -75,7 +75,7 @@ namespace CantinaCookBook
         protected void lnkHome_Click(object sender, EventArgs e)
         {
 
-            Response.Redirect("~/Index.aspx");
+            Response.Redirect("UserHome.aspx");
 
         }
     }

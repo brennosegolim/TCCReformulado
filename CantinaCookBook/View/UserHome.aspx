@@ -5,6 +5,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <main runat="server" id="main">
                 <div class="container" runat="server">
+                    <div class="row">
+                        <div class="col s8 offset-s2" runat="server" id="dvPanels">
+                            <div class="card-panel #a5d6a7 green lighten-3" style="text-align:center;" id="dvSucesso" runat="server"></div>
+                            <div class="card-panel red lighten-3" style="text-align:center;" id="dvAlerta" runat="server"></div>
+                        </div>
+                    </div>
                     <div id="dvSelectDependente" runat="server">
                         <div class="row">
                             <br/>
@@ -21,7 +27,7 @@
                                     <div class="col s12 header" id="dvNomeUsuario" runat="server" style="text-align:center;text-transform:uppercase;font-size:xx-large"></div>
                                  </div>
                                 <div class="row">
-                                    <div id="dvHistórico" class="card col s12" style="min-height:400px;max-height:500px; overflow:auto;" runat="server">
+                                    <div id="dvHistórico" class="card col s12" style="min-height:500px;max-height:600px; overflow:auto;" runat="server">
                                         <div class="row">
                                             <div class="col s12" style="text-align:center;text-transform:uppercase;font-size:xx-large">Histórico</div>
                                         </div>
@@ -62,6 +68,22 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div id="dvAdministrador" runat="server">
+                        <div class="row">
+                            <asp:GridView ID="grdClientes" runat="server" AutoGenerateColumns="false">
+                                <Columns>
+                                    <asp:TemplateField HeaderText="Ações">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="btnAutenticar" runat="server" Font-Size="18px" OnClick="btnAutenticar_Click" CommandArgument='<%# Eval("IdCliente") %>'><i class="large material-icons" title="Autenticar" style="font-size:18px">lock_open</i></asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="Nome" HeaderText="Nome"/>
+                                    <asp:BoundField DataField="CPF" HeaderText="CPF"/>
+                                    <asp:BoundField DataField="Email" HeaderText="Email"/>
+                                </Columns>
+                            </asp:GridView>
                         </div>
                     </div>
                     <br/>

@@ -22,55 +22,88 @@ namespace CantinaCookBook.View
             if(!IsPostBack)
             {
 
+                msgEsconder();
                 txtFiltroData.Visible = false;
                 btnRealizarFiltro.Visible = false;
 
                 if (Session["Nome"] != null )
                 {
 
+
                     string nome = Session["Nome"].ToString();
                     string nivel = Session["Nivel"].ToString();
                     string idCliente = Session["IdCliente"].ToString();
 
-                    dvNomeUsuario.InnerText = Session["Nome"].ToString();
-
-                    if (numeroDependentes(idCliente) > 0)
+                    if (nivel.Equals("U"))
                     {
 
-                        DataTable dt = null;
+                        dvAdministrador.Visible = false;
+                        dvNomeUsuario.InnerText = Session["Nome"].ToString();
 
-                        string html = "";
-
-                        dvUsuario.Visible = false;
-                        dvSelectDependente.Visible = true;
-
-                        dt = retornaDependentes(idCliente);
-
-                        if(dt != null && dt.Rows.Count > 0)
+                        if (numeroDependentes(idCliente) > 0)
                         {
 
-                            cbxDepentes.Items.Add(new ListItem("Selecione o Dependente.", ""));
-                            cbxDepentes.Items.Add(new ListItem("Eu", idCliente));
+                            DataTable dt = null;
 
-                            for (int i = 0; i < dt.Rows.Count; i++)
+                            string html = "";
+
+                            dvUsuario.Visible = false;
+                            dvSelectDependente.Visible = true;
+
+                            dt = retornaDependentes(idCliente);
+
+                            if (dt != null && dt.Rows.Count > 0)
                             {
 
-                                string teste = dt.Rows[i]["IdCliente"].ToString();
-                                string teste2 = dt.Rows[i]["Nome"].ToString();
+                                cbxDepentes.Items.Add(new ListItem("Selecione o Dependente.", ""));
+                                cbxDepentes.Items.Add(new ListItem("Eu", idCliente));
 
-                                cbxDepentes.Items.Add(new ListItem(dt.Rows[i]["Nome"].ToString(),dt.Rows[i]["IdCliente"].ToString()));
+                                for (int i = 0; i < dt.Rows.Count; i++)
+                                {
+
+                                    string teste = dt.Rows[i]["IdCliente"].ToString();
+                                    string teste2 = dt.Rows[i]["Nome"].ToString();
+
+                                    cbxDepentes.Items.Add(new ListItem(dt.Rows[i]["Nome"].ToString(), dt.Rows[i]["IdCliente"].ToString()));
+
+                                }
+
+                            }
+
+                        }
+                        else
+                        {
+
+                            dvUsuario.Visible = true;
+                            dvSelectDependente.Visible = false;
+                            gerarHistorico(idCliente, "0");
+
+                            if (temResponsavel(idCliente))
+                            {
+
+                                setLimiteGasto(int.Parse(idCliente));
+                                txtPrecoLimite.Disabled = true;
+                                btnConfirmarLimite.Visible = false;
+
+                            }
+                            else
+                            {
+
+                                setLimiteGasto(int.Parse(idCliente));
+                                txtPrecoLimite.Disabled = false;
+                                btnConfirmarLimite.Visible = true;
 
                             }
 
                         }
 
-                    }
-                    else
+                    } else
                     {
 
-                        dvUsuario.Visible = true;
+                        dvUsuario.Visible = false;
                         dvSelectDependente.Visible = false;
-                        gerarHistorico(idCliente, "0");
+                        dvAdministrador.Visible = true;
+                        carregarGridAdministrasdor();
 
                     }
 
@@ -80,13 +113,15 @@ namespace CantinaCookBook.View
 
         }
 
+        //Método para gerar a tabela de histórico de gastos.
         private void gerarHistorico(string idCliente,string data)
         {
 
             DataTable dt = null;
             string sql = "";
 
-            sql = " SELECT IdProduto_Venda,                               "
+            //Select que irá retornar os histórico de gastos.
+            sql = " SELECT TOP 50 IdProduto_Venda,                        "
                 + "        PR.Descricao as NomeProduto,                   "
                 + "        PR.Preco as Valor,                             "
                 + "        PV.Quantidade,                                 "
@@ -98,11 +133,13 @@ namespace CantinaCookBook.View
                 + "  WHERE IdCliente = " + idCliente + "                  "
                 + "    AND (('0' = '" + data + "') OR (PV.[Data] = '" + data + "')) ";
 
+            //Recebendo o resultado em um datatable
             dt = con.getSelect(sql);
 
             if (dt != null)
             {
 
+                //Montando o cabeçalho.
                 string html = " <table class=\"responsive-table highlight\"> "
                             + "     <thead>                                  "
                             + "         <tr>                                 "
@@ -115,6 +152,7 @@ namespace CantinaCookBook.View
                             + "     </thead>                                 "
                             + "     <tbody>                                  ";
 
+                //Percorrendo o DataTable e montando as linhas.
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
 
@@ -137,12 +175,14 @@ namespace CantinaCookBook.View
                 html += "</tbody>"
                       + "</table>";
 
+                //Inserindo a variável no card.
                 tableHistorico.InnerHtml = html;
 
             }
 
         }
 
+        //Método que retorna o número de dependentes.
         private int numeroDependentes(string idCliente)
         {
 
@@ -178,6 +218,7 @@ namespace CantinaCookBook.View
 
         }
 
+        //Método para retornar a consulta dos dependentes.
         private DataTable retornaDependentes(string idCliente)
         {
 
@@ -206,10 +247,28 @@ namespace CantinaCookBook.View
 
         }
 
+        //Ação do botão para mostrar e esconder o calendário
         private void toggleFiltroData()
         {
 
             string idCliente = cbxDepentes.SelectedValue;
+
+            if (idCliente == null || idCliente.Equals(""))
+            {
+
+                if (Session["IdCliente"] != null)
+                {
+                
+                    idCliente = Session["IdCliente"].ToString();
+                
+                } else
+                {
+
+                    idCliente = "0";
+
+                }
+            
+            }
 
             if (txtFiltroData.Visible) {
 
@@ -231,6 +290,75 @@ namespace CantinaCookBook.View
 
         }
 
+        private bool temResponsavel(string idCliente)
+        {
+
+            DataTable dt = null;
+
+            string sql = "";
+            int quantidade = 0;
+
+            sql = " SELECT COUNT(IdResponsavel) as Qtd "
+                + "   FROM Cliente                     "
+                + "  WHERE IdResponsavel <> 0          "
+                + "    AND IdCliente = " + idCliente;
+
+            dt = con.getSelect(sql);
+
+            if (dt != null)
+            {
+
+                int.TryParse(dt.Rows[0]["Qtd"].ToString(),out quantidade);
+
+            }
+
+            return quantidade > 0;
+
+        }
+
+        private void setLimiteGasto()
+        {
+
+            DataTable dt = null;
+            ClienteLimiteCon clienteLimiteCon = new ClienteLimiteCon();
+
+            int idCliente = int.Parse(cbxDepentes.SelectedValue);
+            decimal valor = new decimal(0.0);
+
+            dt = clienteLimiteCon.SelectCliente(idCliente);
+
+            if(dt != null && dt.Rows.Count > 0)
+            {
+
+                decimal.TryParse(dt.Rows[0]["Valor"].ToString(), out valor);
+
+            }
+
+            txtPrecoLimite.Value = valor.ToString();
+
+        }
+
+        private void setLimiteGasto(int idCliente)
+        {
+
+            DataTable dt = null;
+            ClienteLimiteCon clienteLimiteCon = new ClienteLimiteCon();
+
+            decimal valor = new decimal(0.0);
+
+            dt = clienteLimiteCon.SelectCliente(idCliente);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+
+                decimal.TryParse(dt.Rows[0]["Valor"].ToString(), out valor);
+
+            }
+
+            txtPrecoLimite.Value = valor.ToString();
+
+        }
+
         protected void cbxDepentes_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -248,19 +376,56 @@ namespace CantinaCookBook.View
             try
             {
 
-                int idCliente = int.Parse(cbxDepentes.SelectedValue);
+                string idCliente = cbxDepentes.SelectedValue;
+
+                if (idCliente == null || idCliente.Equals(""))
+                {
+
+                    if (Session["IdCliente"] != null)
+                    {
+
+                        idCliente = Session["IdCliente"].ToString();
+
+                    }
+                    else
+                    {
+
+                        idCliente = "0";
+
+                    }
+
+                }
+
                 decimal valorLimite = new decimal(0.0);
                 Decimal.TryParse(txtPrecoLimite.Value, out valorLimite);
                 string dataAtual = DateTime.Now.ToString();
 
                 ClienteLimiteCon clienteLimiteCon = new ClienteLimiteCon();
                 ClienteLimite clienteLimite = new ClienteLimite();
-                
-                clienteLimite.IdCliente = idCliente;
-                clienteLimite.Valor = valorLimite;
-                clienteLimite.Data = dataAtual;
 
-                clienteLimiteCon.AdicionarLimite(clienteLimite);
+                DataTable dt = clienteLimiteCon.SelectCliente(int.Parse(idCliente));
+
+                if (dt != null)
+                {
+
+                    if (decimal.Parse(dt.Rows[0]["Valor"].ToString()) != valorLimite)
+                    {
+
+                        clienteLimite.IdCliente = int.Parse(idCliente);
+                        clienteLimite.Valor = valorLimite;
+                        clienteLimite.Data = dataAtual;
+
+                        clienteLimiteCon.AdicionarLimite(clienteLimite);
+
+                        msgSucesso("Limite de gasto alterado com sucesso.");
+                    
+                    } else {
+
+                        msgEsconder();
+
+                    }
+
+                }
 
             }
             catch (Exception err)
@@ -271,6 +436,8 @@ namespace CantinaCookBook.View
                 msgErro = err.ToString();
 
                 msgErro = msgErro.Replace("\n", "").Replace("\r", "");
+
+                msgAlerta("Não possível alterar o limite de gasto.");
 
             }
 
@@ -287,6 +454,25 @@ namespace CantinaCookBook.View
         {
 
             string idCliente = cbxDepentes.SelectedValue;
+
+            if (idCliente == null || idCliente.Equals(""))
+            {
+
+                if (Session["IdCliente"] != null)
+                {
+
+                    idCliente = Session["IdCliente"].ToString();
+
+                }
+                else
+                {
+
+                    idCliente = "0";
+
+                }
+
+            }
+
             string data = txtFiltroData.Value;
 
             if (data.Length == 10)
@@ -299,5 +485,70 @@ namespace CantinaCookBook.View
             }
 
         }
+
+        private void msgAlerta(string mensagem)
+        {
+
+            dvAlerta.InnerText = mensagem;
+            dvPanels.Visible = true;
+            dvAlerta.Visible = true;
+            dvSucesso.Visible = false;
+
+        }
+
+        private void msgSucesso(string mensagem)
+        {
+
+            dvSucesso.InnerText = mensagem;
+            dvPanels.Visible = true;
+            dvSucesso.Visible = true;
+            dvAlerta.Visible = false;
+
+        }
+
+        private void msgEsconder()
+        {
+
+            dvPanels.Visible = false;
+            dvAlerta.Visible = false;
+            dvSucesso.Visible = false;
+
+            dvAlerta.InnerText = "";
+            dvSucesso.InnerText = "";
+
+        }
+
+        private void carregarGridAdministrasdor()
+        {
+
+            DataTable dt = null;
+
+            string sql = " SELECT *               "
+                       + "   FROM Cliente         "
+                       + "  WHERE Autenticado = 0 ";
+
+            dt = con.getSelect(sql);
+
+            if (dt != null)
+            {
+
+                grdClientes.DataSource = dt;
+                grdClientes.DataBind();
+
+            }
+
+        }
+
+        protected void btnAutenticar_Click(object sender, EventArgs e)
+        {
+
+            int idCliente = Convert.ToInt32((sender as LinkButton).CommandArgument);
+
+            Session.Add("IdAutenticar",idCliente);
+
+            Response.Redirect("AutenticarUsuario.aspx");
+
+        }
+
     }
 }

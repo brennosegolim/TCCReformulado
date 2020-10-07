@@ -24,6 +24,33 @@ namespace CantinaCookBook.View
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl main;
 
         /// <summary>
+        /// Controle dvPanels.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvPanels;
+
+        /// <summary>
+        /// Controle dvSucesso.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvSucesso;
+
+        /// <summary>
+        /// Controle dvAlerta.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvAlerta;
+
+        /// <summary>
         /// Controle dvSelectDependente.
         /// </summary>
         /// <remarks>
@@ -130,5 +157,23 @@ namespace CantinaCookBook.View
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnConfirmarLimite;
+
+        /// <summary>
+        /// Controle dvAdministrador.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvAdministrador;
+
+        /// <summary>
+        /// Controle grdClientes.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdClientes;
     }
 }

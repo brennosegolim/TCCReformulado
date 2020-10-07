@@ -20,7 +20,7 @@ namespace CantinaCookBook.View
         }
 
         [WebMethod]
-        public static string cadastrarUsuario(string nome,string email,string cpf,string usuario,string senha,string confirmar)
+        public static string cadastrarUsuario(string nome,string dataNascimento,string telefone,string celular,string email,string cpf,string usuario,string senha,string confirmar)
         {
 
             //Instanciando as Classes de conexão e modelos.
@@ -48,6 +48,9 @@ namespace CantinaCookBook.View
                 cliente.Nome = nome;
                 cliente.Email = email;
                 cliente.CPF = cpf;
+                cliente.DataNascimento = dataNascimento;
+                cliente.Telefone = telefone;
+                cliente.Celular = celular;
 
                 sucesso = clienteCon.AdicionarCliente(cliente);
 

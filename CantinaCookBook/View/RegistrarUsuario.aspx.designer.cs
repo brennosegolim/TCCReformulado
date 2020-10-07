@@ -60,22 +60,22 @@ namespace CantinaCookBook.View
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblNome;
 
         /// <summary>
-        /// Controle txtEmail.
+        /// Controle txtDataNascimento.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtEmail;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtDataNascimento;
 
         /// <summary>
-        /// Controle lblEmail.
+        /// Controle lblDataNascimento.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblEmail;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblDataNascimento;
 
         /// <summary>
         /// Controle txtCPF.
@@ -94,6 +94,60 @@ namespace CantinaCookBook.View
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblCPF;
+
+        /// <summary>
+        /// Controle txtEmail.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtEmail;
+
+        /// <summary>
+        /// Controle lblEmail.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblEmail;
+
+        /// <summary>
+        /// Controle txtTelefone.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtTelefone;
+
+        /// <summary>
+        /// Controle lblTelefone.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblTelefone;
+
+        /// <summary>
+        /// Controle txtCelular.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCelular;
+
+        /// <summary>
+        /// Controle lblCelular.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblCelular;
 
         /// <summary>
         /// Controle txtUsuario.

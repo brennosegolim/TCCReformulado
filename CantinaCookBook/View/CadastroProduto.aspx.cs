@@ -168,7 +168,7 @@ namespace CantinaCookBook.View
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("CadastroProduto.aspx");
+            Response.Redirect("Cadastros.aspx");
         }
 
     }
