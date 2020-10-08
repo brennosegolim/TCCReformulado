@@ -153,6 +153,7 @@
     <Content Include="View\Login.aspx" />
     <Content Include="View\RegistrarUsuario.aspx" />
     <Content Include="View\UserHome.aspx" />
+    <Content Include="View\VincularClientes.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -255,6 +256,13 @@
     </Compile>
     <Compile Include="View\UserHome.aspx.designer.cs">
       <DependentUpon>UserHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\VincularClientes.aspx.cs">
+      <DependentUpon>VincularClientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\VincularClientes.aspx.designer.cs">
+      <DependentUpon>VincularClientes.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

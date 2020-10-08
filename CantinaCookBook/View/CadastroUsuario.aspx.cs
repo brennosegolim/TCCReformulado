@@ -31,6 +31,9 @@ namespace CantinaCookBook.View
                         CantinaCommons commons = new CantinaCommons();
 
                         string sql = " SELECT CL.Nome AS NomeCliente, "
+                                   + "        CONVERT(VARCHAR(10),DataNascimento,103) DataNascimento, "
+                                   + "        CL.Telefone,"
+                                   + "        CL.Celular,"
                                    + "        CL.Email, "
 	                               + "        CL.CPF, "
 	                               + "        AC.[Login], "
@@ -49,6 +52,9 @@ namespace CantinaCookBook.View
                             string cpf = dt.Rows[0]["CPF"].ToString();
                             string login = dt.Rows[0]["Login"].ToString();
                             string nivel = dt.Rows[0]["Nivel"].ToString();
+                            string dataNascimento = dt.Rows[0]["DataNascimento"].ToString();
+                            string telefone = dt.Rows[0]["Telefone"].ToString();
+                            string celular = dt.Rows[0]["Celular"].ToString();
 
                             txtSenha.Disabled = true;
                             btnVerSenha.Disabled = true;
@@ -61,6 +67,9 @@ namespace CantinaCookBook.View
                             txtCpf.Value = cpf;
                             txtLogin.Value = login;
                             cbnNivelUsuario.Value = nivel;
+                            txtDataNascimento.Value = dataNascimento;
+                            txtTelefone.Value = telefone;
+                            txtCelular.Value = celular;
 
                         }
 
@@ -73,7 +82,7 @@ namespace CantinaCookBook.View
         }
 
         [WebMethod]
-        public static string cadastrarUsuario(string nome, string email, string cpf, string usuario, string senha,string nivel,string metodo,string codCliente)
+        public static string cadastrarUsuario(string nome,string dataNascimento,string telefone,string celular, string email, string cpf, string usuario, string senha,string nivel,string metodo,string codCliente)
         {
 
             //Instanciando as Classes de conexão e modelos.
@@ -103,6 +112,9 @@ namespace CantinaCookBook.View
                     cliente.Nome = nome;
                     cliente.Email = email;
                     cliente.CPF = cpf;
+                    cliente.DataNascimento = dataNascimento;
+                    cliente.Telefone = telefone;
+                    cliente.Celular = celular;
 
                     sucesso = clienteCon.AdicionarCliente(cliente);
 
@@ -173,6 +185,10 @@ namespace CantinaCookBook.View
                     cliente.Nome = nome;
                     cliente.Email = email;
                     cliente.CPF = cpf;
+                    cliente.DataNascimento = dataNascimento;
+                    cliente.Telefone = telefone;
+                    cliente.Celular = celular;
+
                     clienteCon.AtualizarCliente(cliente);
 
                     sql = " UPDATE ACESSO  "

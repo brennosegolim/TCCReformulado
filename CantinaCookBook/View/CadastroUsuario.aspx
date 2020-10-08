@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/MasterPage.Master" AutoEventWireup="true" CodeBehind="CadastroUsuario.aspx.cs" Inherits="CantinaCookBook.View.CadastroUsuario" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
@@ -18,9 +19,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">email</i>
-                    <input id="txtEmail" type="text" class="validate" placeholder="Email" maxlength="70" runat="server" onblur="verificaEmail()">
+                <div class="input-field col s2">
+                    <i class="material-icons prefix">date_range</i>
+                    <input id="txtDataNascimento" type="text" class="validate date" placeholder="Data de Nascimento" maxlength="10" runat="server">
                 </div>
             </div>
             <div class="row">
@@ -30,7 +31,28 @@
                 </div>
             </div>
             <div class="row">
-                <h4 class="header">INFORMAÇÕES DE ACESSO</h4>
+                <h4 class="header">INFORMAÇÕES DE CONTATO</h4>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">email</i>
+                    <input id="txtEmail" type="text" class="validate" placeholder="Email" maxlength="70" runat="server" onblur="verificaEmail()">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s3">
+                    <i class="material-icons prefix">local_phone</i>
+                    <input id="txtTelefone" type="text" class="validate phone_with_ddd" placeholder="Telefone" maxlength="20" runat="server">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s3">
+                    <i class="material-icons prefix">smartphone</i>
+                    <input id="txtCelular" type="text" class="validate cellphone" placeholder="Celular" maxlength="20" runat="server">
+                </div>
+            </div>
+            <div class="row">
+                <h4 class="header">INFORMAÇÕES DE CONTATO</h4>
             </div>
             <div class="row">
                 <div class="input-field col s6">
@@ -106,12 +128,18 @@
             let nivel = $("#ContentPlaceHolder1_cbnNivelUsuario").val();
             let metodo = $("#ContentPlaceHolder1_metodo").val();
             let idCliente = $("#ContentPlaceHolder1_idCliente").val();
+            let dataNascimento = $("#ContentPlaceHolder1_txtDataNascimento").val();
+            let telefone = $("#ContentPlaceHolder1_txtTelefone").val();
+            let celular = $("#ContentPlaceHolder1_txtCelular").val();
             let mensagem = "";
 
 
             if (nome == "") mensagem += "Atenção !!! informe o campo Nome Completo.\n";
-            if (email == "") mensagem += "Atenção !!! informe o campo do Email.\n";
+            if (dataNascimento == "") mensagem = "Atenção !!! informe o campo Data de Nascimento";
             if (cpf == "") mensagem += "Atenção !!! informe o campo do CPF.\n";
+            if (email == "") mensagem += "Atenção !!! informe o campo do Email.\n";
+            if (telefone == "") mensagem += "Atenção !!! informe o campo Telefone.\n";
+            if (celular == "") mensagem += "Atenção !!! informe o campo do Celular.\n";
             if (usuario == "") mensagem += "Atenção !!! informe o campo do Usuário.\n";
             if (senha == "" && metodo != "alterar") mensagem += "Atenção !!! informe o campo Senha.\n";
 
@@ -122,13 +150,16 @@
                     type: "POST",
                     url: "CadastroUsuario.aspx/cadastrarUsuario",
                     data: "{   nome: '" + nome +
+                          "', dataNascimento: '" + dataNascimento +
+                          "', telefone: '" + telefone +
+                          "', celular: '" + celular +
                           "', email: '" + email +
                           "',   cpf: '" + cpf +
                           "', usuario: '" + usuario +
                           "', senha: '" + senha +
                           "', nivel: '" + nivel +
-                        "', metodo: '" + metodo +
-                        "', codCliente: '" + idCliente +
+                          "', metodo: '" + metodo +
+                          "', codCliente: '" + idCliente +
                           "'}",
                     contentType: "application/json; charset=utf8",
                     dataType: "json",
@@ -246,8 +277,15 @@
             $("#ContentPlaceHolder1_txtCpf").val("");
             $("#ContentPlaceHolder1_txtLogin").val("");
             $("#ContentPlaceHolder1_txtSenha").val("");
+            $("#ContentPlaceHolder1_txtDataNascimento").val("");
+            $("#ContentPlaceHolder1_txtTelefone").val("");
+            $("#ContentPlaceHolder1_txtCelular").val("");
 
         }
+
+        $('.phone_with_ddd').mask('(00) 0000-0000');
+        $('.cellphone').mask('(00) 00000-0000');
+        $('.date').mask('00/00/0000');
 
     </script>
 

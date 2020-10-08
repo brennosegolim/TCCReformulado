@@ -104,16 +104,19 @@ namespace CantinaCookBook.View
 
             DataTable dt = null;
 
-            string sql = " SELECT CL.IdCliente,                                 "
-                       + "        CL.Nome,                                      "
-                       + "        CL.Email,                                     "
-                       + "        AC.[Login],                                   "
-                       + "        CASE WHEN AC.Nivel = 'A' THEN 'Administrador' "
-                       + "                                 ELSE 'Usuário'       "
-                       + "                                  END as Nivel        "
-                       + "   FROM Cliente CL                                    "
-                       + "  INNER JOIN Acesso AC ON AC.IdCliente = CL.IdCliente "
-                       + "  ORDER BY Nome                                       ";
+            string sql = " SELECT CL.IdCliente,                                        "
+                       + "        CL.Nome,                                             "
+                       + "        CL.Email,                                            "
+                       + "        AC.[Login],                                          "
+                       + "        DATEDIFF(YEAR,CL.DataNascimento,GETDATE()) as Idade, "
+                       + "        CL.Celular,                                          "
+                       + "        CL.Telefone,                                         "
+                       + "        CASE WHEN AC.Nivel = 'A' THEN 'Administrador'        "
+                       + "                                 ELSE 'Usuário'              "
+                       + "                                  END as Nivel               "
+                       + "   FROM Cliente CL                                           "
+                       + "  INNER JOIN Acesso AC ON AC.IdCliente = CL.IdCliente        "
+                       + "  ORDER BY Nome                                              ";
 
             dt = con.getSelect(sql);
 
@@ -122,6 +125,43 @@ namespace CantinaCookBook.View
 
                 grdUsuarios.DataSource = dt;
                 grdUsuarios.DataBind();
+
+            }
+
+        }
+
+        protected void btnVincular_Click(object sender, EventArgs e)
+        {
+
+            DataTable dt = null;
+
+            int idCliente = Convert.ToInt32((sender as LinkButton).CommandArgument);
+            int idade = 0;
+            string sql = "";
+
+            sql = " SELECT DATEDIFF(YEAR,DataNascimento,GETDATE()) as Idade "
+                + "   FROM Cliente                                          "
+                + "  WHERE IdCliente = " + idCliente.ToString();
+
+            dt = con.getSelect(sql);
+
+            if (dt != null)
+            {
+
+                int.TryParse(dt.Rows[0]["Idade"].ToString(), out idade);
+
+            }
+
+            if(idade < 18)
+            {
+            
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Atenção, esse cliente é menor de idade, porntanto não poderá possuir dependentes.')", true);
+            
+            } else
+            {
+
+                Session.Add("ClienteResponsavel",idCliente);
+                Response.Redirect("VincularClientes.aspx");
 
             }
 
