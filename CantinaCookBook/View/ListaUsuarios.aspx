@@ -3,6 +3,21 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
+        <br />
+        <div class="col s2">
+            <div style="padding:0px; float:right;">
+                <asp:Button ID="btnVoltar" runat="server" Text="Voltar" CssClass="waves-effect waves-light btn-small grey lighten-1" OnClick="btnVoltar_Click"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s3 offset-m4">
+                <i class="material-icons prefix">search</i>
+                <input id="txtNome" type="text" class="validate" placeholder="Nome" maxlength="150" runat="server">
+            </div>
+            <div class="col s1" style="margin-top:2%;">
+                <asp:Button ID="btnBuscar" CssClass="waves-effect waves-light btn-small" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
+            </div>
+        </div>
         <div class="row">
             <div class="col s12">
                 <asp:GridView ID="grdUsuarios" runat="server" AutoGenerateColumns="false">
@@ -25,6 +40,8 @@
                 </asp:GridView>
             </div>
         </div>
+        <br />
+        <br />
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="scripts" runat="server">

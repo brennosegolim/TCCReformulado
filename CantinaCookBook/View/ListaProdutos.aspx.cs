@@ -1,7 +1,9 @@
 ﻿using CantinaCookBook.Controller;
 using CantinaCookBook.Models;
+using CantinaCookBook.Scripts;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,6 +14,7 @@ namespace CantinaCookBook.View
     public partial class ListaProdutos : System.Web.UI.Page
     {
 
+        CantinaCon con = new CantinaCon();
         ProdutoCon pc = new ProdutoCon();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -67,6 +70,30 @@ namespace CantinaCookBook.View
 
             grdProdutos.DataSource = pc.SelectProduto();
             grdProdutos.DataBind();
+
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+
+            DataTable dt = null;
+
+            string descricao = txtDescricao.Value;
+            string sql = "";
+
+            sql = " SELECT *        "
+                + "   FROM Produto  "
+                + "  WHERE Descricao LIKE '%' + '" + descricao + "' +'%' ";
+
+            dt = con.getSelect(sql);
+
+            if(dt != null)
+            {
+
+                grdProdutos.DataSource = dt;
+                grdProdutos.DataBind();
+
+            }
 
         }
     }

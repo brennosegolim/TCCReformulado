@@ -25,10 +25,10 @@ namespace CantinaCookBook.View
                 msgEsconder();
                 txtFiltroData.Visible = false;
                 btnRealizarFiltro.Visible = false;
+                dvSelecionarOutro.Visible = false;
 
                 if (Session["Nome"] != null )
                 {
-
 
                     string nome = Session["Nome"].ToString();
                     string nivel = Session["Nivel"].ToString();
@@ -83,6 +83,7 @@ namespace CantinaCookBook.View
 
                                 setLimiteGasto(int.Parse(idCliente));
                                 txtPrecoLimite.Disabled = true;
+                                titleLimiteGastos.InnerText = "SEU LIMITE DE GASTOS";
                                 btnConfirmarLimite.Visible = false;
 
                             }
@@ -364,9 +365,16 @@ namespace CantinaCookBook.View
 
             string idCliente = cbxDepentes.SelectedValue;
 
-            dvUsuario.Visible = true;
-            dvSelectDependente.Visible = false;
-            gerarHistorico(idCliente, "0");
+            if (idCliente != null && !idCliente.Equals(""))
+            {
+
+                dvUsuario.Visible = true;
+                dvSelectDependente.Visible = false;
+                dvSelecionarOutro.Visible = true;
+                gerarHistorico(idCliente, "0");
+                setLimiteGasto(int.Parse(idCliente));
+
+            }
 
         }
 
@@ -405,7 +413,7 @@ namespace CantinaCookBook.View
 
                 DataTable dt = clienteLimiteCon.SelectCliente(int.Parse(idCliente));
 
-                if (dt != null)
+                if (dt != null && dt.Rows.Count > 0)
                 {
 
                     if (decimal.Parse(dt.Rows[0]["Valor"].ToString()) != valorLimite)
@@ -425,6 +433,17 @@ namespace CantinaCookBook.View
 
                     }
 
+                } else
+                {
+
+                    clienteLimite.IdCliente = int.Parse(idCliente);
+                    clienteLimite.Valor = valorLimite;
+                    clienteLimite.Data = dataAtual;
+
+                    clienteLimiteCon.AdicionarLimite(clienteLimite);
+
+                    msgSucesso("Limite de gasto alterado com sucesso.");
+
                 }
 
             }
@@ -436,6 +455,8 @@ namespace CantinaCookBook.View
                 msgErro = err.ToString();
 
                 msgErro = msgErro.Replace("\n", "").Replace("\r", "");
+
+                System.Diagnostics.Debug.WriteLine(msgErro);
 
                 msgAlerta("Não possível alterar o limite de gasto.");
 
@@ -550,5 +571,13 @@ namespace CantinaCookBook.View
 
         }
 
+        protected void btnEscolherDependente_Click(object sender, EventArgs e)
+        {
+            dvUsuario.Visible = false;
+            dvSelectDependente.Visible = true;
+            dvSelecionarOutro.Visible = false;
+            txtFiltroData.Value = "";
+
+        }
     }
 }

@@ -11,6 +11,13 @@
                             <div class="card-panel red lighten-3" style="text-align:center;" id="dvAlerta" runat="server"></div>
                         </div>
                     </div>
+                    <div id="dvSelecionarOutro" runat="server">
+                        <div class="row">
+                            <div style="padding:0px; float:right;">
+                                <asp:Button ID="btnEscolherDependente" runat="server" Text="Escolher Dependente" CssClass="waves-effect waves-light btn-small grey lighten-1" OnClick="btnEscolherDependente_Click"/>
+                            </div>
+                        </div>
+                    </div>
                     <div id="dvSelectDependente" runat="server">
                         <div class="row">
                             <br/>
@@ -53,7 +60,8 @@
                                 <div class="row">
                                     <div id="dvLimiteCredito" class="card col s12" style="min-height:300px;max-height:300px;" runat="server">
                                         <div class="row">
-                                            <div class="col s12" style="text-align:center;text-transform:uppercase;font-size:xx-large">Limitar Gastos</div>
+                                            <div id="titleLimiteGastos" runat="server" class="col s6 offset-s3" style="text-align:center;text-transform:uppercase;font-size:xx-large">Limitar Gastos Diários</div>
+                                            <div id="observacaoLimite" runat="server" class="col s2 offset-s1 red-text">Valor de R$ 0,00 será considerado sem limite de gasto !</div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s4 offset-s4">

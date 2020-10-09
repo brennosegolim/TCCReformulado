@@ -674,8 +674,8 @@ IF (SELECT COUNT(*) FROM Acesso) < 0
 BEGIN
 
 	INSERT INTO Acesso ([Login],Senha,Nivel,IdCliente) VALUES ('BFFSegolim','e99a18c428cb38d5f260853678922e03','A',1)
-	INSERT INTO Acesso ([Login],Senha,Nivel,IdCliente) VALUES ('PSilva','e99a18c428cb38d5f260853678922e03','U',2)
-	INSERT INTO Acesso ([Login],Senha,Nivel,IdCliente) VALUES ('LJesus','e99a18c428cb38d5f260853678922e03','U',3)
+	INSERT INTO Acesso ([Login],Senha,Nivel,IdCliente) VALUES ('LJesus','e99a18c428cb38d5f260853678922e03','U',2)
+	INSERT INTO Acesso ([Login],Senha,Nivel,IdCliente) VALUES ('PSilva','e99a18c428cb38d5f260853678922e03','U',3)
 
 END
 

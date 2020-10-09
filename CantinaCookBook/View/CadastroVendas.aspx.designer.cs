@@ -11,34 +11,34 @@ namespace CantinaCookBook.View
 {
 
 
-    public partial class ListaProdutos
+    public partial class CadastroVendas
     {
 
         /// <summary>
-        /// Controle txtDescricao.
+        /// Controle dvPanels.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtDescricao;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvPanels;
 
         /// <summary>
-        /// Controle btnBuscar.
+        /// Controle dvSucesso.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscar;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvSucesso;
 
         /// <summary>
-        /// Controle grdProdutos.
+        /// Controle dvAlerta.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdProdutos;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvAlerta;
     }
 }

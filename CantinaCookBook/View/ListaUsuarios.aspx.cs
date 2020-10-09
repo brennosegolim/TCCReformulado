@@ -23,7 +23,6 @@ namespace CantinaCookBook.View
 
                 atualizarGrid();
 
-                Session.Remove("IdCliente");
                 Session.Remove("Metodo");
             
             }
@@ -167,5 +166,44 @@ namespace CantinaCookBook.View
 
         }
 
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+
+            DataTable dt = null;
+
+            string nome = txtNome.Value;
+            string sql = "";
+
+            sql = " SELECT CL.IdCliente,                                        "
+                + "        CL.Nome,                                             "
+                + "        CL.Email,                                            "
+                + "        AC.[Login],                                          "
+                + "        DATEDIFF(YEAR,CL.DataNascimento,GETDATE()) as Idade, "
+                + "        CL.Celular,                                          "
+                + "        CL.Telefone,                                         "
+                + "        CASE WHEN AC.Nivel = 'A' THEN 'Administrador'        "
+                + "                                 ELSE 'Usuário'              "
+                + "                                  END as Nivel               "
+                + "   FROM Cliente CL                                           "
+                + "  INNER JOIN Acesso AC ON AC.IdCliente = CL.IdCliente        "
+                + "  WHERE CL.Nome LIKE '%' + '" + nome + "' +'%'               "
+                + "  ORDER BY CL.Nome                                           ";
+
+            dt = con.getSelect(sql);
+
+            if (dt != null)
+            {
+
+                grdUsuarios.DataSource = dt;
+                grdUsuarios.DataBind();
+
+            }
+
+        }
+
+        protected void btnVoltar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ListaUsuarios.aspx");
+        }
     }
 }

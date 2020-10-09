@@ -78,5 +78,12 @@ namespace CantinaCookBook
             Response.Redirect("UserHome.aspx");
 
         }
+
+        protected void lnkVendas_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect("");
+
+        }
     }
 }

@@ -148,6 +148,7 @@
     <Content Include="View\CadastroProduto.aspx" />
     <Content Include="View\Cadastros.aspx" />
     <Content Include="View\CadastroUsuario.aspx" />
+    <Content Include="View\CadastroVendas.aspx" />
     <Content Include="View\ListaProdutos.aspx" />
     <Content Include="View\ListaUsuarios.aspx" />
     <Content Include="View\Login.aspx" />
@@ -199,6 +200,13 @@
     </Compile>
     <Compile Include="View\CadastroUsuario.aspx.designer.cs">
       <DependentUpon>CadastroUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\CadastroVendas.aspx.cs">
+      <DependentUpon>CadastroVendas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\CadastroVendas.aspx.designer.cs">
+      <DependentUpon>CadastroVendas.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\ListaProdutos.aspx.cs">
       <DependentUpon>ListaProdutos.aspx</DependentUpon>

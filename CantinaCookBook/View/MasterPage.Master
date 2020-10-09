@@ -36,6 +36,7 @@
                     <asp:LinkButton OnClick="lnkHome_Click" ID="lnkHome" CssClass="brand-logo" style="margin-left:5px;" runat="server"><i class="material-icons dp48">home</i>Cantina Cook Book</asp:LinkButton>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a href="sass.html"></a></li>
+                        <li><asp:LinkButton ID="lnkVendas" runat="server" Text="Vendas" OnClick="lnkVendas_Click"></asp:LinkButton></li>
                         <li><asp:LinkButton ID="lnkCadastros" runat="server" Text="Cadastros" OnClick="lnkCadastros_Click"></asp:LinkButton></li>
                         <li><asp:LinkButton ID="lnkSair" runat="server" OnClick="lnkSair_Click" Text="Logout"></asp:LinkButton></li>
                     </ul>
