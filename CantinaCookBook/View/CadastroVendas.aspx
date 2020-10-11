@@ -10,8 +10,14 @@
                 <div class="card-panel red lighten-3" style="text-align:center;" id="dvAlerta" runat="server"></div>
             </div>
         </div>
-        
+        <div class="row">
+            <div class="col s2">
+                <asp:ImageButton ID="btnAdicionar" runat="server" ImageUrl="../Img/botoes/adicionar.jpg" OnClick="btnAdicionar_Click" ToolTip="Nova venda." />
+            </div>
+        </div>
     </div>
+    <br />
+    <br />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="scripts" runat="server">
 </asp:Content>

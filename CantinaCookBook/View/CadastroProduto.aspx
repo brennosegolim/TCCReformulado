@@ -13,6 +13,13 @@
             </div>
             <h4 class="header">CADASTRO DE PRODUTOS</h4>
             <div class="row">
+                <div class="input-field col s2">
+                    <i class="material-icons prefix">receipt</i>
+                    <input placeholder="Código do produto" id="txtCodigo" type="text" class="validate" runat="server">
+                    <label for="txtCodigo">Código do Produto</label>
+                </div>
+            </div>
+            <div class="row">
                 <div class="input-field col s6">
                     <i class="material-icons prefix">sms</i>
                     <input placeholder="Descrição do produto" id="txtDescricao" type="text" class="validate" runat="server">

@@ -82,7 +82,7 @@ namespace CantinaCookBook
         protected void lnkVendas_Click(object sender, EventArgs e)
         {
 
-            Response.Redirect("");
+            Response.Redirect("CadastroVendas.aspx");
 
         }
     }

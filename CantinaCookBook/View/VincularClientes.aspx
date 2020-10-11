@@ -46,7 +46,7 @@
                     <Columns>
                         <asp:TemplateField HeaderText="Ações">
                             <ItemTemplate>
-                                <asp:LinkButton ID="btnRemover"  runat="server" Font-Size="18px" OnClientClick="javascript: confirm('Deseja realmente desvincular o usuário ?');" OnClick="btnRemover_Click" CommandArgument='<%# Eval("IdCliente") %>'><i class="large material-icons" title="Desvincular Usuário" style="font-size:18px; color:#de2a2a;">clear</i></asp:LinkButton>
+                                <asp:LinkButton ID="btnRemover"  runat="server" Font-Size="18px" OnClick="btnRemover_Click" CommandArgument='<%# Eval("IdCliente") %>'><i class="large material-icons" title="Desvincular Usuário" style="font-size:18px; color:#de2a2a;">clear</i></asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField DataField="Nome" HeaderText="Nome"/>

@@ -85,6 +85,27 @@ namespace CantinaCookBook.Scripts
             return valor.Equals("");
 
         }
+
+        public bool isInterger(object valor) {
+
+            bool retorno = true;
+
+            try{
+
+                int.Parse(valor.ToString());
+
+            }
+            catch
+            {
+
+                retorno = false;
+
+            }
+
+            return retorno;
+
+        }
+
         #endregion
 
         #endregion

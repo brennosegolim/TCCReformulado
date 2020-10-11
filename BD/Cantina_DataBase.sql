@@ -11,7 +11,6 @@ END
 
 GO
 
-
 --Selecionando a base de dados para ser usada.
 USE TCCantina
 
@@ -93,6 +92,7 @@ IF NOT EXISTS( SELECT Name
 BEGIN
 
 	CREATE TABLE Produto ( IdProduto INT IDENTITY(1,1) NOT NULL,
+							  Codigo VARCHAR(6) UNIQUE NOT NULL,
 						   Descricao VARCHAR(150)      NOT NULL,
 							   Preco DECIMAL(15,2)     NOT NULL,
 						  Observacao VARCHAR(MAX)      NULL
@@ -353,7 +353,8 @@ GO
 
 --Criando procedure de inserção de produto.
 CREATE OR ALTER PROCEDURE InsertProduto(
-
+	
+	@Codigo     VARCHAR(6),
 	@Descricao  VARCHAR(150),
 	@Preco      DECIMAL(15,2),
 	@Observacao VARCHAR(MAX)
@@ -361,8 +362,8 @@ CREATE OR ALTER PROCEDURE InsertProduto(
 ) AS
 BEGIN
 
-	INSERT INTO Produto(Descricao,Preco,Observacao)
-	VALUES (@Descricao,@Preco,@Observacao)
+	INSERT INTO Produto(Codigo,Descricao,Preco,Observacao)
+	VALUES (@Codigo,@Descricao,@Preco,@Observacao)
 
 END
 
@@ -372,6 +373,7 @@ GO
 CREATE OR ALTER PROCEDURE UpdateProduto(
 
 	@IdProduto INT,
+	@Codigo     VARCHAR(6),
 	@Descricao  VARCHAR(150),
 	@Preco      DECIMAL(15,2),
 	@Observacao VARCHAR(MAX)
@@ -380,7 +382,8 @@ CREATE OR ALTER PROCEDURE UpdateProduto(
 BEGIN
 
 	UPDATE Produto
-	   SET Descricao  = @Descricao,
+	   SET Codigo     = @Codigo,
+	       Descricao  = @Descricao,
 	       Preco      = @Preco,
 		   Observacao = @Observacao
 	 WHERE IdProduto  = @IdProduto
@@ -656,20 +659,18 @@ END
 GO
 
 --Clientes
-IF (SELECT COUNT(*) FROM Cliente) < 0
+IF (SELECT COUNT(*) FROM Cliente) <= 0
 
 BEGIN
 
-	INSERT INTO Cliente (Nome,DataNascimento,Telefone,Celular,Email,CPF,IdResponsavel) VALUES ('Brenno Fernando Figueira Segolim','15/06/1999','(14) 3491-1832','(14) 99737-1965','brennosegolim12@gmail.com','49368085803',NULL)
+	INSERT INTO Cliente (Nome,DataNascimento,Telefone,Celular,Email,CPF,Autenticado,IdResponsavel) VALUES ('Brenno Fernando Figueira Segolim','15/06/1999','(14) 3491-1832','(14) 99737-1965','brennosegolim12@gmail.com','49368085803',1,NULL)
 	INSERT INTO Cliente (Nome,DataNascimento,Telefone,Celular,Email,CPF,IdResponsavel) VALUES ('Lucas de Jesus','10/01/1984','(14) 3441-5443','(14) 99899-1344','jesusluquinhas@gmail.com','06300365000',NULL)
 	INSERT INTO Cliente (Nome,DataNascimento,Telefone,Celular,Email,CPF,IdResponsavel) VALUES ('Pedro Silva','23/10/2010','(14) 3441-5443','(14) 99703-5465','pedro_silva@gmail.com','90915795019',2)
-
-	UPDATE Cliente SET Autenticado = 1 WHERE IdCliente = 1
 
 END
 
 --Acesso
-IF (SELECT COUNT(*) FROM Acesso) < 0
+IF (SELECT COUNT(*) FROM Acesso) <= 0
 
 BEGIN
 
@@ -680,18 +681,20 @@ BEGIN
 END
 
 --Produto 
-IF (SELECT COUNT(*) FROM Produto) < 0
+IF (SELECT COUNT(*) FROM Produto) <= 0
 
 BEGIN
 
-	INSERT INTO Produto (Descricao,Preco,Observacao) VALUES ('Salgado',4.00,'Salgado sabores diversos')
-	INSERT INTO Produto (Descricao,Preco,Observacao) VALUES ('Copo de Refrigerante',2.00,'Coca-Cola ou Guaraná')
-	INSERT INTO Produto (Descricao,Preco,Observacao) VALUES ('Bolo no pote',5.00,'Bolo de chocolate ou leite ninho.')
+	INSERT INTO Produto (Codigo,Descricao,Preco,Observacao) VALUES ('1','Salgado',4.00,'Salgado sabores diversos')
+	INSERT INTO Produto (Codigo,Descricao,Preco,Observacao) VALUES ('2','Copo de Refrigerante',2.00,'Coca-Cola ou Guaraná')
+	INSERT INTO Produto (Codigo,Descricao,Preco,Observacao) VALUES ('3','Bolo no pote',5.00,'Bolo de chocolate ou leite ninho.')
 
 END
 
 --Venda
-IF (SELECT COUNT(*) FROM Venda) < 0
+IF (SELECT COUNT(*) FROM Venda) <= 0
+
+BEGIN
 
 	INSERT INTO Venda ([Data],ValorTotal,IdCliente) VALUES ('23-06-2020',6.00,1)
 	INSERT INTO Venda ([Data],ValorTotal,IdCliente) VALUES ('23-06-2020',9.00,2)
@@ -699,7 +702,7 @@ IF (SELECT COUNT(*) FROM Venda) < 0
 
 END
 
-IF (SELECT COUNT(*) FROM Produto_Venda) < 0
+IF (SELECT COUNT(*) FROM Produto_Venda) <= 0
 
 BEGIN
 
@@ -713,7 +716,7 @@ BEGIN
 END
 
 --ClienteLimite
-IF (SELECT COUNT(*) FROM ClienteLimite) < 0
+IF (SELECT COUNT(*) FROM ClienteLimite) <= 0
 
 BEGIN
 

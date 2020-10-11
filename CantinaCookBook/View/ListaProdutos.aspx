@@ -23,6 +23,7 @@
                                 <asp:LinkButton ID="btnAlterar" runat="server" Font-Size="18px" OnClick="btnAlterar_Click" CommandArgument='<%# Eval("IdProduto") %>'><i class="large material-icons" title="Editar Produto" style="font-size:18px">create</i></asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:BoundField DataField="Codigo" HeaderText="Código"/>
                         <asp:BoundField DataField="Descricao" HeaderText="Descrição"/>
                         <asp:BoundField DataField="Preco" HeaderText="Preço"/>
                         <asp:BoundField DataField="Observacao" HeaderText="Observação"/>

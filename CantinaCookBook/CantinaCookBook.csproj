@@ -110,6 +110,7 @@
     <Content Include="CSS\materialize.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Img\banners\banner.jpg" />
+    <Content Include="Img\botoes\adicionar.jpg" />
     <Content Include="Img\imgCadastro\cadastroProdutos.jpg" />
     <Content Include="Img\imgCadastro\CadastroUsuario.jpg" />
     <Content Include="Index.aspx" />

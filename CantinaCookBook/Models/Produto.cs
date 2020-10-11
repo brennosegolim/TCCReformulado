@@ -10,6 +10,11 @@
         public int IdProduto { get; set; }
 
         /// <summary>
+        /// Atributo da classe Produto referente ao Código do produto.
+        /// </summary>
+        public string Codigo { get; set; }
+
+        /// <summary>
         /// Atributo da classe Produto referente a Descrição do produto.
         /// </summary>
         public string Descricao { get; set; }
@@ -30,6 +35,7 @@
         {
 
             this.IdProduto = 0;
+            this.Codigo = "";
             this.Descricao = "";
             this.Preco = new decimal(0);
             this.Observacao = null;
