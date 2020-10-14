@@ -111,6 +111,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Img\banners\banner.jpg" />
     <Content Include="Img\botoes\adicionar.jpg" />
+    <Content Include="Img\botoes\cancelar.jpg" />
     <Content Include="Img\imgCadastro\cadastroProdutos.jpg" />
     <Content Include="Img\imgCadastro\CadastroUsuario.jpg" />
     <Content Include="Index.aspx" />
@@ -166,6 +167,7 @@
     <Compile Include="Controller\ClienteCon.cs" />
     <Compile Include="Controller\ClienteLimiteCon.cs" />
     <Compile Include="Controller\ProdutoCon.cs" />
+    <Compile Include="Controller\VendaCon.cs" />
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

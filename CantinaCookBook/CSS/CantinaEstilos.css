@@ -1,1 +1,7 @@
-﻿
+﻿.btn-cantina {
+    border: 0px;
+    background-color: #715348;
+    color: white;
+    height: 3em;
+    width: 8em;
+}
