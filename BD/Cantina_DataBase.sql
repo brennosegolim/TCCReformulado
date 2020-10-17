@@ -658,6 +658,35 @@ END
 
 GO
 
+/*Diversas*/
+
+--Procedure para retornar o limite e o valor já gasto(diariamente).
+CREATE OR ALTER PROCEDURE getValorLimiteDiario(
+
+	@IdCliente INT,
+	@Data      DATE
+
+)
+AS
+BEGIN
+
+	DECLARE @LimiteGasto DECIMAL(15,2),
+		    @GastoTotalDiario DECIMAL(15,2)
+
+	SET @LimiteGasto = (SELECT TOP 1 Valor
+	                      FROM ClienteLimite 
+						 WHERE IdCliente = @IdCliente
+						 ORDER BY [Data] DESC)
+
+	SET @GastoTotalDiario = (SELECT SUM(ValorTotal)
+	                           FROM Venda
+							  WHERE CAST([Data] as date) = CAST(GETDATE() as date)
+							    AND IdCliente = @IdCliente)
+	                  
+	SELECT @LimiteGasto as Limite, @GastoTotalDiario as Gasto
+
+END
+
 --Clientes
 IF (SELECT COUNT(*) FROM Cliente) <= 0
 

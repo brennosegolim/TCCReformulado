@@ -36,7 +36,7 @@
                     <asp:LinkButton OnClick="lnkHome_Click" ID="lnkHome" CssClass="brand-logo" style="margin-left:5px;" runat="server"><i class="material-icons dp48">home</i>Cantina Cook Book</asp:LinkButton>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a href="sass.html"></a></li>
-                        <li><asp:LinkButton ID="lnkVendas" runat="server" Text="Vendas" OnClick="lnkVendas_Click"></asp:LinkButton></li>
+                        <li><asp:LinkButton ID="lnkVendas" runat="server" Text="Pendência" OnClick="lnkVendas_Click" AccessKey="1"></asp:LinkButton></li>
                         <li><asp:LinkButton ID="lnkCadastros" runat="server" Text="Cadastros" OnClick="lnkCadastros_Click"></asp:LinkButton></li>
                         <li><asp:LinkButton ID="lnkSair" runat="server" OnClick="lnkSair_Click" Text="Logout"></asp:LinkButton></li>
                     </ul>
@@ -47,21 +47,15 @@
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
 
-            <!-- Rodapé -->
-            <footer class="page-footer brown" style="position:fixed;bottom:0;left:0;width:100%;z-index:1001;" runat="server" id="footer">
-                <div class="footer-copyright">
-                    <div class="container">
-                        © 2020 Todos Direitos Reservados 
-                    </div>
-                </div>
-            </footer>
             <asp:ContentPlaceHolder ID="scripts" runat="server">
 
             </asp:ContentPlaceHolder>
             <script type="text/javascript" id="formJS">
 
                 $(document).ready(function () {
+
                     $('.materialboxed').materialbox();
+
                 });
 
             </script>

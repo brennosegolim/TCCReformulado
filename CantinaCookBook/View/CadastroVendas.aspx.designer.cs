@@ -141,6 +141,15 @@ namespace CantinaCookBook.View
         protected global::System.Web.UI.WebControls.Button btnPesquisarProduto;
 
         /// <summary>
+        /// Controle btnCancelarPesquisa.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelarPesquisa;
+
+        /// <summary>
         /// Controle txtQuantidade.
         /// </summary>
         /// <remarks>
@@ -157,5 +166,59 @@ namespace CantinaCookBook.View
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grdProduto;
+
+        /// <summary>
+        /// Controle grdProdutoVenda.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdProdutoVenda;
+
+        /// <summary>
+        /// Controle dvTotalizadores.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvTotalizadores;
+
+        /// <summary>
+        /// Controle titleLimiteDiario.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl titleLimiteDiario;
+
+        /// <summary>
+        /// Controle titleQuantidadeItens.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl titleQuantidadeItens;
+
+        /// <summary>
+        /// Controle titleValorTotal.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl titleValorTotal;
+
+        /// <summary>
+        /// Controle btnEncerrarVenda.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnEncerrarVenda;
     }
 }

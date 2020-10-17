@@ -132,7 +132,8 @@ namespace CantinaCookBook.View
                 + "  INNER JOIN Produto PR ON PR.IdProduto = PV.IdProduto "
                 + "  INNER JOIN Venda VE ON VE.IdVenda = PV.IdVenda       "
                 + "  WHERE IdCliente = " + idCliente + "                  "
-                + "    AND (('0' = '" + data + "') OR (PV.[Data] = '" + data + "')) ";
+                + "    AND (('0' = '" + data + "') OR ( CAST(PV.[Data] as Date) = '" + data + "')) "
+                + "  ORDER BY PV.Data DESC";
 
             //Recebendo o resultado em um datatable
             dt = con.getSelect(sql);

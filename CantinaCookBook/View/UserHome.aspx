@@ -106,6 +106,8 @@
 
             $('select').formSelect();
 
+            setTimeout(function () { $("#ContentPlaceHolder1_dvPanels").hide(); }, 3000);
+
         });
 
         $('.dinheiro').mask('#.##0,00', { reverse: true });

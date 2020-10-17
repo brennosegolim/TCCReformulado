@@ -35,6 +35,7 @@ namespace CantinaCookBook
                         {
 
                             lnkCadastros.Visible = false;
+                            lnkVendas.Visible = false;
 
                         }
 

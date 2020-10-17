@@ -111,6 +111,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Img\banners\banner.jpg" />
     <Content Include="Img\botoes\adicionar.jpg" />
+    <Content Include="Img\botoes\botaoEncerrar.jpg" />
     <Content Include="Img\botoes\cancelar.jpg" />
     <Content Include="Img\imgCadastro\cadastroProdutos.jpg" />
     <Content Include="Img\imgCadastro\CadastroUsuario.jpg" />
