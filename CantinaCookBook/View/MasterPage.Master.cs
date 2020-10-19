@@ -36,6 +36,7 @@ namespace CantinaCookBook
 
                             lnkCadastros.Visible = false;
                             lnkVendas.Visible = false;
+                            lnkPagamento.Visible = false;
 
                         }
 
@@ -83,7 +84,34 @@ namespace CantinaCookBook
         protected void lnkVendas_Click(object sender, EventArgs e)
         {
 
-            Response.Redirect("CadastroVendas.aspx");
+            if (Session["Nivel"] != null)
+            {
+
+                if (Session["Nivel"].ToString().Equals("A"))
+                {
+
+                    Response.Redirect("CadastroVendas.aspx");
+
+                }
+
+            }
+
+        }
+
+        protected void lnkPagamento_Click(object sender, EventArgs e)
+        {
+
+            if (Session["Nivel"] != null)
+            {
+
+                if (Session["Nivel"].ToString().Equals("A"))
+                {
+
+                    Response.Redirect("Pagamento.aspx");
+
+                }
+
+            }
 
         }
     }

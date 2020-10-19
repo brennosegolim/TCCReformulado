@@ -37,6 +37,7 @@
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a href="sass.html"></a></li>
                         <li><asp:LinkButton ID="lnkVendas" runat="server" Text="Pendência" OnClick="lnkVendas_Click" AccessKey="1"></asp:LinkButton></li>
+                        <li><asp:LinkButton ID="lnkPagamento" runat="server" Text="Pagamentos" OnClick="lnkPagamento_Click"></asp:LinkButton></li>
                         <li><asp:LinkButton ID="lnkCadastros" runat="server" Text="Cadastros" OnClick="lnkCadastros_Click"></asp:LinkButton></li>
                         <li><asp:LinkButton ID="lnkSair" runat="server" OnClick="lnkSair_Click" Text="Logout"></asp:LinkButton></li>
                     </ul>

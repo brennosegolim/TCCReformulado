@@ -155,6 +155,7 @@
     <Content Include="View\ListaProdutos.aspx" />
     <Content Include="View\ListaUsuarios.aspx" />
     <Content Include="View\Login.aspx" />
+    <Content Include="View\Pagamento.aspx" />
     <Content Include="View\RegistrarUsuario.aspx" />
     <Content Include="View\UserHome.aspx" />
     <Content Include="View\VincularClientes.aspx" />
@@ -254,6 +255,13 @@
     </Compile>
     <Compile Include="View\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pagamento.aspx.cs">
+      <DependentUpon>Pagamento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Pagamento.aspx.designer.cs">
+      <DependentUpon>Pagamento.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\RegistrarUsuario.aspx.cs">
       <DependentUpon>RegistrarUsuario.aspx</DependentUpon>

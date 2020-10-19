@@ -148,6 +148,26 @@ END
 
 GO
 
+--Criando a tabela de pagamentos
+IF NOT EXISTS( SELECT *
+                 FROM SysObjects
+				WHERE Name = 'Pagamento'
+				  AND type = 'U' )
+
+BEGIN
+
+	CREATE TABLE Pagamento ( IdPagamento INT IDENTITY(1,1) NOT NULL,
+	                         IdCliente   INT               NOT NULL,
+							 Valor       DECIMAL(15,2)     NOT NULL,
+							 [Data]      DATETIME          NOT NULL
+							 
+		   CONSTRAINT PK_IdPagamento PRIMARY KEY CLUSTERED (IdPagamento),
+		   CONSTRAINT FK_IdPagamento_IdCliente FOREIGN KEY (IdCliente) REFERENCES Cliente(IdCliente))
+
+END
+
+GO
+
 /* PROCEDURES */
 
 /* Cliente */
