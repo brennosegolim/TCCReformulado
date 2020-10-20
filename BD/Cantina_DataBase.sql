@@ -156,10 +156,12 @@ IF NOT EXISTS( SELECT *
 
 BEGIN
 
-	CREATE TABLE Pagamento ( IdPagamento INT IDENTITY(1,1) NOT NULL,
-	                         IdCliente   INT               NOT NULL,
-							 Valor       DECIMAL(15,2)     NOT NULL,
-							 [Data]      DATETIME          NOT NULL
+	CREATE TABLE Pagamento ( IdPagamento   INT IDENTITY(1,1) NOT NULL,
+	                         IdCliente     INT               NOT NULL,
+							 Valor         DECIMAL(15,2)     NOT NULL,
+							 ValorAnterior DECIMAL(15,2)     NULL,
+							 Tipo          VARCHAR(5)        NULL,
+							 [Data]        DATETIME          NOT NULL
 							 
 		   CONSTRAINT PK_IdPagamento PRIMARY KEY CLUSTERED (IdPagamento),
 		   CONSTRAINT FK_IdPagamento_IdCliente FOREIGN KEY (IdCliente) REFERENCES Cliente(IdCliente))
@@ -706,6 +708,37 @@ BEGIN
 	SELECT @LimiteGasto as Limite, @GastoTotalDiario as Gasto
 
 END
+
+GO
+
+--Procedure para retornar o débito ou crédtio do cliente.
+CREATE OR ALTER PROCEDURE getSaldo(
+	
+	@IdCliente INT
+	
+)
+AS
+BEGIN
+	
+	DECLARE @Saldo DECIMAL(15,2),
+	        @Pagamento DECIMAL(15,2),
+			@Resultado DECIMAL(15,2)
+
+	SET @Saldo = (SELECT SUM(ValorTotal)
+	                FROM Venda
+				   WHERE IdCliente = @IdCliente)
+
+	SET @Pagamento = (SELECT SUM(Valor)
+	                    FROM Pagamento
+					   WHERE IdCliente = @IdCliente)
+
+	SET @Resultado = (ISNULL(@Saldo,0.00) - ISNULL(@Pagamento,0.00))
+
+	SELECT ISNULL(@Saldo,0.00) as ValorPendencia, ISNULL(@Pagamento,0.00) as ValorPagamento, ISNULL(@Resultado,0.00) as ValorDiferenca
+
+END
+
+/*INSERT nas tabelas*/
 
 --Clientes
 IF (SELECT COUNT(*) FROM Cliente) <= 0
