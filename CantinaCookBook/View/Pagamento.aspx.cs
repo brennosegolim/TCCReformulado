@@ -68,6 +68,10 @@ namespace CantinaCookBook.View
             toogleFinalizar();
             dvValores.Visible = false;
             btnCancelarCliente.Visible = false;
+            dvResultadoPagamento.Visible = false;
+            dvHistóricoPagamento.Visible = false;
+
+            txtCliente.Focus();
 
         }
         #endregion
@@ -77,6 +81,18 @@ namespace CantinaCookBook.View
         {
             txtCliente.Value = "";
         }
+
+        private void resetHistorico()
+        {
+
+            string html = " <div class=\"row\"> "
+                        + "     <h3 style=\"text-align:center;\">HISTÓRICO</h3> "
+                        + " </div> ";
+
+            dvHistóricoPagamento.InnerHtml = html;
+
+        }
+
         #endregion
 
         #region Método para finalizar o pagamento
@@ -190,6 +206,115 @@ namespace CantinaCookBook.View
 
         }
 
+        private void carregarHistórico(string idCliente)
+        {
+
+            DataTable dt = null;
+
+            string sql = "";
+            string html = "";
+
+            sql = @"SELECT IdPagamento,
+                           IdCliente,
+	                       Valor as ValorPagamento,
+	                       ValorAnterior as Saldo,
+	                       CONVERT(VARCHAR(20),[Data],113) as [Data],
+	                       (CASE WHEN Tipo = 'PAG'    THEN 'Pagamento de pêndencia'
+	                            WHEN Tipo = 'CRED'    THEN 'Adição de crédito.'
+	                    		WHEN Tipo = 'PAGCR'   THEN 'Pagamento de pêndencia e adição de troco ao crédito'
+			                     END) as Tipo
+                      FROM Pagamento
+                     WHERE IdCliente = " + idCliente
+                 + " ORDER BY Data DESC";
+
+            try
+            {
+
+                dt = con.getSelect(sql);
+                resetHistorico();
+
+            } catch
+            {
+
+                msgAlerta("Não foi possível carregar o histórico de pagamentos.");
+
+            }
+
+            html = "<div class=\"col s12\">";
+
+            if(dt != null)
+            {
+
+                html += " <table class=\"responsive-table highlight\"> "
+                      + "     <thead>                                  "
+                      + "         <tr>                                 "
+                      + "             <th>Valor Pendente/Crédito</th>  "
+                      + "             <th>Valor Pagamento</th>         "
+                      + "             <th>Valor Resultante</th>        "
+                      + "             <th>Data</th>                    "
+                      + "             <th>Tipo de Transação</th>       "
+                      + "         </tr>                                "
+                      + "     </thead>                                 "
+                      + "     <tbody>                                  ";
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+                    decimal valorPendente = new decimal(0.0);
+                    decimal valorPagamento = new decimal(0.0);
+                    decimal resultado = new decimal(0.0);
+                    string data = dt.Rows[i]["Data"].ToString();
+                    string tipo = dt.Rows[i]["Tipo"].ToString();
+                    string cor = "";
+                    string aux = "";
+                    string auxRes = "";
+
+                    decimal.TryParse(dt.Rows[i]["Saldo"].ToString(),out valorPendente);
+                    decimal.TryParse(dt.Rows[i]["ValorPagamento"].ToString(), out valorPagamento);
+
+                    resultado = (valorPendente - valorPagamento);
+
+                    if (valorPendente <= 0)
+                    {
+
+                        cor = "#c8e6c9";
+                        valorPendente = (valorPendente * -1);
+                        aux = " de crédito.";
+
+                    }
+                    else
+                    {
+                     
+                        cor = "#ffcdd2";
+                        aux = " pendentes.";
+
+                    }
+
+                    if (resultado > 0) auxRes = " - pendentes.";
+                    if (resultado < 0) { auxRes = " - de crédito."; resultado = (resultado * -1); };
+
+                    html += " <tr style=\"background-color:"+ cor +";\" >           "
+                          + "     <td> R$ " + valorPendente  + " - " + aux + "</td> "
+                          + "     <td> R$ " + valorPagamento + "</td>               "
+                          + "     <td> R$ " + resultado + auxRes +"</td>            "
+                          + "     <td>" + data + "</td>                             "
+                          + "     <td>" + tipo + "</td>                             "
+                          + " </tr>                                                 ";
+
+                }
+
+                html += "</tbody>"
+                      + "</table>"
+                      + "</div>";
+
+                dvHistóricoPagamento.InnerHtml += html;
+
+                dvHistóricoPagamento.Visible = true;
+
+            }
+
+        }
+
         #endregion
 
         #region Evento dos componentes
@@ -231,7 +356,9 @@ namespace CantinaCookBook.View
             txtIdCliente.Value = idCliente.ToString();
 
             carregarValor(idCliente.ToString());
-        
+
+            carregarHistórico(idCliente.ToString());
+
         }
 
         //Método para realizar o pagamento.
@@ -268,6 +395,9 @@ namespace CantinaCookBook.View
 
             if ( ! ehCredito ) 
             {
+
+                Session.Add("RelNome", "Brenno Fernando Figueira Segolim");
+                Session.Add("RelValor",lblValor.Text);
 
                 Response.Write("<script> window.open('../Relatórios/RelFolhaPagamento.aspx','_blank'); </script>");
 
@@ -338,15 +468,20 @@ namespace CantinaCookBook.View
                     finally
                     {
                         carregarValor(idCliente.ToString());
+                        carregarHistórico(idCliente.ToString());
                     }
 
                 }
                 else
                 {
 
-                    dvPagamentoFinalizar.Visible = false;
+                    Session.Add("ValorPago",resultado);
+                    Session.Add("Diferenca",diferenca);
 
-                    dvResultadoPagamento.InnerText = (resultado * -1).ToString();
+                    dvValorResultado.InnerText = "R$ " + (resultado * -1).ToString();
+
+                    dvPagamentoFinalizar.Visible = false;
+                    dvResultadoPagamento.Visible = true;
 
                 }
 
@@ -362,12 +497,12 @@ namespace CantinaCookBook.View
                 {
 
                     decimal.TryParse(dt.Rows[0]["ValorDiferenca"].ToString(), out diferenca);
+                    decimal.TryParse(txtValorRecebido.Value, out valorPago);
 
                 }
 
                 sql = @"INSERT INTO Pagamento (IdCliente,Valor,ValorAnterior,Tipo,[Data])
-                        VALUES (" + idCliente.ToString() + "," + valorPago.ToString("0.00", CultureInfo.InvariantCulture) + "," + diferenca.ToString() + ",'CRED','" + DateTime.Now.ToString() + "')";
-
+                        VALUES (" + idCliente.ToString() + "," + valorPago.ToString("0.00", CultureInfo.InvariantCulture) + "," + diferenca.ToString("0.00",CultureInfo.InvariantCulture) + ",'CRED','" + DateTime.Now.ToString() + "')";
 
                 try
                 {
@@ -386,7 +521,145 @@ namespace CantinaCookBook.View
 
                     msgAlerta("Não foi possível adicionar crédito ! Tente novamente mais tarde.");
 
+                } finally
+                {
+
+                    carregarValor(idCliente.ToString());
+                    carregarHistórico(idCliente.ToString());
+
                 }
+
+            }
+
+            txtValorRecebido.Value = "";
+
+        }
+
+        //Confirmar Pagamento e adicionar crédito.
+        protected void btnAdicionarCredito_Click(object sender, EventArgs e)
+        {
+
+            if (Session["ValorPago"] != null && Session["Diferenca"] != null)
+            {
+
+                string sql = "";
+                string idCliente = txtIdCliente.Value;
+                decimal valorPago = new decimal(0.0);
+                decimal diferenca = new decimal(0.0);
+                decimal resultado = new decimal(0.0);
+
+                decimal.TryParse(Session["ValorPago"].ToString(), out valorPago);
+                decimal.TryParse(Session["Diferenca"].ToString(), out diferenca);
+
+                resultado = (diferenca - valorPago);
+
+                sql = @"INSERT INTO Pagamento (IdCliente,Valor,ValorAnterior,Tipo,[Data])
+                        VALUES (" + idCliente.ToString() + "," + resultado.ToString("0.00", CultureInfo.InvariantCulture) + "," + diferenca.ToString("0.00", CultureInfo.InvariantCulture) + ",'PAGCR','" + DateTime.Now.ToString() + "')";
+
+                try
+                {
+
+                    con.executeSelect(sql);
+
+                    toogleFinalizar();
+
+                    msgSucesso("Pagamento realizado e crédito adicionado com sucesso !");
+
+                }
+                catch
+                {
+
+                    toogleFinalizar();
+
+                    msgAlerta("Não foi possível adicionar o pagamento e o crédito ! tente novamente mais tarde.");
+
+                }
+                finally
+                {
+
+                    carregarValor(idCliente);
+                    carregarHistórico(idCliente);
+
+                    Session.Remove("ValorPago");
+                    Session.Remove("Diferenca");
+
+                    dvValorResultado.InnerText = "";
+
+                    dvPagamentoFinalizar.Visible = true;
+                    dvResultadoPagamento.Visible = false;
+
+                }
+
+            }
+            else
+            {
+
+                toogleFinalizar();
+
+                msgAlerta("Ocorreu um problema inesperado, informe ao admnistrador do sistema.");
+
+            }
+
+        }
+
+        //Confirmar Pagamento e devolver o troco.
+        protected void btnTroco_Click(object sender, EventArgs e)
+        {
+
+            if (Session["Diferenca"] != null)
+            {
+
+                string sql = "";
+                string idCliente = txtIdCliente.Value;
+                decimal diferenca = new decimal(0.0);
+
+                decimal.TryParse(Session["Diferenca"].ToString(), out diferenca);
+
+                sql = @"INSERT INTO Pagamento (IdCliente,Valor,ValorAnterior,Tipo,[Data])
+                        VALUES (" + idCliente.ToString() + "," + diferenca.ToString("0.00", CultureInfo.InvariantCulture) + "," + diferenca.ToString("0.00", CultureInfo.InvariantCulture) + ",'PAG','" + DateTime.Now.ToString() + "')";
+
+                try
+                {
+
+                    con.executeSelect(sql);
+
+                    toogleFinalizar();
+
+                    msgSucesso("Pagamento realizado com sucesso !");
+
+                }
+                catch
+                {
+
+                    toogleFinalizar();
+
+                    msgAlerta("Não foi possível adicionar o pagamento ! tente novamente mais tarde.");
+
+                }
+                finally
+                {
+
+                    carregarValor(idCliente);
+                    carregarHistórico(idCliente);
+
+
+                    Session.Remove("ValorPago");
+                    Session.Remove("Diferenca");
+
+                    dvValorResultado.InnerText = "";
+
+                    dvPagamentoFinalizar.Visible = true;
+                    dvResultadoPagamento.Visible = false;
+
+                }
+
+            }
+            else
+            {
+
+                toogleFinalizar();
+
+                msgAlerta("Ocorreu um problema inesperado, informe ao admnistrador do sistema.");
 
             }
 
@@ -394,15 +667,6 @@ namespace CantinaCookBook.View
 
         #endregion
 
-        protected void btnAdicionarCredito_Click(object sender, EventArgs e)
-        {
-            toogleFinalizar();
-        }
-
-        protected void btnTroco_Click(object sender, EventArgs e)
-        {
-            toogleFinalizar();
-        }
     }
 
 }

@@ -240,6 +240,15 @@ namespace CantinaCookBook.View
         protected global::System.Web.UI.WebControls.Button btnImprimirFolhaPagamento;
 
         /// <summary>
+        /// Controle dvHistóricoPagamento.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvHistóricoPagamento;
+
+        /// <summary>
         /// Controle txtEhCredito.
         /// </summary>
         /// <remarks>

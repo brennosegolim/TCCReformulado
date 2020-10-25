@@ -594,10 +594,13 @@ namespace CantinaCookBook.View
             codigo = txtCodigo.Value;
             descricao = txtProduto.Value;
 
+            if (codigo.Equals("")) codigo = descricao;
+            if (descricao.Equals("")) descricao = codigo;
+
             sql = " SELECT TOP 10 * " 
                 + "   FROM Produto  "
                 + "  WHERE Descricao LIKE '%' + '"+ descricao + "' + '%' "
-                + "     OR Codigo = '"+ codigo +"' ";
+                + "     OR Codigo = '"+ codigo.Trim() +"' ";
 
             dt = con.getSelect(sql);
 

@@ -24,27 +24,26 @@
                 </div>
                 <div class="row">
                     <div class="col s11 offset-s1" style="margin-top:2%;">
-                        <asp:Button ID="btnConfirmarPagamento" runat="server" Text="Confirmar" style="border: 0px;background-color: #715348;color: white;height: 3em;width: 8em;" OnClick="btnConfirmarPagamento_Click"/>
+                        <asp:Button ID="btnConfirmarPagamento" runat="server" Text="Confirmar" style="border: 0px;background-color: #715348;color: white;height: 3em;width: 8em; cursor:pointer;" OnClick="btnConfirmarPagamento_Click"/>
                     </div>
                 </div>
             </div>
-            <div class="row" id="dvResultadoPagamento" runat="server" visible="false"> 
+            <div class="row" id="dvResultadoPagamento" runat="server"> 
                 <div class="row" style="font-size:18px; text-align:center; ">
                     Atenção ! O valor informado foi maior que o valor pendente. Oquê deseja fazer ?
                 </div>
                 <br/>
-                <br/>
                 <div class="row">
-                    <div class="col s4 offset-s4" style="text-align:center; font-size:32px;" id="dvValorResultado" runat="server">
+                    <div class="col s4 offset-s4" style="text-align:center; font-size:72px; font-weight:bold;" id="dvValorResultado" runat="server">
                         
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s2 offset-s1" style="margin-top:2%;">
-                        <asp:Button ID="btnAdicionarCredito" runat="server" Text="Adicionar Crédito" style="border: 0px;background-color: #715348;color: white;height: 3em;width: 8em;" OnClick="btnAdicionarCredito_Click"/>
+                    <div class="col s2 offset-s1" style="margin-top:2%; margin-left:30%;">
+                        <asp:Button ID="btnAdicionarCredito" runat="server" Text="Adicionar Crédito" style="border: 0px;background-color: #715348;color: white;height: 3em;width: 9em;cursor:pointer;" OnClick="btnAdicionarCredito_Click"/>
                     </div>
                     <div class="col s2 offset-s1" style="margin-top:2%;">
-                        <asp:Button ID="btnTroco" runat="server" Text="Troco" style="border: 0px;background-color: #715348;color: white;height: 3em;width: 8em;" OnClick="btnTroco_Click"/>
+                        <asp:Button ID="btnTroco" runat="server" Text="Troco" style="border: 0px;background-color: #715348;color: white;height: 3em;width: 8em;cursor:pointer;" OnClick="btnTroco_Click"/>
                     </div>
                 </div>
             </div>
@@ -64,10 +63,10 @@
                 <label for="txtCliente">Cliente</label>
             </div>
             <div>
-                <asp:Button ID="btnBuscarCliente" runat="server" Text="Buscar" style="border: 0px;background-color: #715348;color: white;height: 3em;width: 8em;" OnClick="btnBuscarCliente_Click"/>
+                <asp:Button ID="btnBuscarCliente" runat="server" Text="Buscar" style="border: 0px;background-color: #715348;color: white;height: 3em;width: 8em;cursor:pointer;" OnClick="btnBuscarCliente_Click"/>
             </div>
             <div>
-                <asp:Button ID="btnCancelarCliente" runat="server" Text="Cancelar" style="border: 0px;background-color: #715348;color: white;height: 3em;width: 8em;" OnClick="btnCancelarCliente_Click"/>
+                <asp:Button ID="btnCancelarCliente" runat="server" Text="Cancelar" style="border: 0px;background-color: #715348;color: white;height: 3em;width: 8em;cursor:pointer;" OnClick="btnCancelarCliente_Click"/>
             </div>
         </div>
         <div class="row" id="dvUsuarios" runat="server">
@@ -119,12 +118,19 @@
                 <div class="row">
                     <div class="col s9 offset-s3">
                         <div class="col s3">
-                            <asp:Button ID="btnRealizarPagamento" runat="server" Text="Pagamento" style="border: 0px;background-color: #715348;color: white;height: 3em;width: 8em;" OnClick="btnRealizarPagamento_Click"/>
+                            <asp:Button ID="btnRealizarPagamento" runat="server" Text="Pagamento" style="border: 0px;background-color: #715348;color: white;height: 3em;width: 8em;cursor:pointer;" OnClick="btnRealizarPagamento_Click"/>
                         </div>
                         <div class="col s3">
-                            <asp:Button ID="btnImprimirFolhaPagamento" runat="server" Text="Imprimir" style="border: 0px;background-color: #715348;color: white;height: 3em;width: 8em;" OnClick="btnImprimirFolhaPagamento_Click" />
+                            <asp:Button ID="btnImprimirFolhaPagamento" runat="server" Text="Imprimir" style="border: 0px;background-color: #715348;color: white;height: 3em;width: 8em;cursor:pointer;" OnClick="btnImprimirFolhaPagamento_Click" />
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="dvHistóricoPagamento" runat="server" class="card col s12" style="max-height:600px;overflow-x:hidden; overflow-y:auto;">
+                <div class="row">
+                    <h3 style="text-align:center;">HISTÓRICO</h3>
                 </div>
             </div>
         </div>

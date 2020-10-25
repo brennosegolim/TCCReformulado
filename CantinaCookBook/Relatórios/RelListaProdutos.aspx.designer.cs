@@ -11,7 +11,7 @@ namespace CantinaCookBook.Relatórios
 {
 
 
-    public partial class RelFolhaPagamento
+    public partial class RelListaProdutos
     {
 
         /// <summary>
@@ -33,21 +33,12 @@ namespace CantinaCookBook.Relatórios
         protected global::System.Web.UI.HtmlControls.HtmlForm frmRel;
 
         /// <summary>
-        /// Controle corpoTexto.
+        /// Controle dvListagem.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl corpoTexto;
-
-        /// <summary>
-        /// Controle dataTexto.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dataTexto;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvListagem;
     }
 }

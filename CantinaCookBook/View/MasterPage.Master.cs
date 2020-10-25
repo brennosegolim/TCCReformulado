@@ -37,6 +37,7 @@ namespace CantinaCookBook
                             lnkCadastros.Visible = false;
                             lnkVendas.Visible = false;
                             lnkPagamento.Visible = false;
+                            lnkRelatorios.Visible = false;
 
                         }
 
@@ -113,6 +114,21 @@ namespace CantinaCookBook
 
             }
 
+        }
+
+        protected void lnkRelatorios_Click(object sender, EventArgs e)
+        {
+            if (Session["Nivel"] != null)
+            {
+
+                if (Session["Nivel"].ToString().Equals("A"))
+                {
+
+                    Response.Redirect("Relatorios.aspx");
+
+                }
+
+            }
         }
     }
 }

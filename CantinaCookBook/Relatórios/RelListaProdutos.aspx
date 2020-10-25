@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RelFolhaPagamento.aspx.cs" Inherits="CantinaCookBook.Relatórios.RelFolhaPagamento" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RelListaProdutos.aspx.cs" Inherits="CantinaCookBook.Relatórios.RelListaProdutos" %>
 
 <!DOCTYPE html>
 
@@ -35,24 +35,9 @@
                 </div>
             </div>
             <div class="row" style="text-align:center; font-family:'Times New Roman';">
-                <h5 style="font-weight:bold;">PREZADOS PAIS E RESPONSÁVEIS</h5>
-                <p id="corpoTexto" runat="server" style="text-align:justify;"></p>
-                <br/>
-                <br/>
-                <div class="col s4 offset-s8">_______________________________________</div>
-                <div class="col s4 offset-s8" style="text-align:center;">Tia Cris - (14) 99849-1500</div>
-                <div class="col s4 offset-s8" style="text-align:center;" id="dataTexto" runat="server"></div>
-                <div class="col s12">
-                    <div class="col s4">
-                        <img src="../Img/Logo/LogoBase.jpg" />
-                    </div>
-                    <div class="col s8" style="margin-top:100px;">
-                        <div class="row" style="margin-bottom:0px;">
-                            <b>MARIA CRISTINA DA COSTA FIGUEIRA - ME</b>
-                        </div>
-                        <div class="">CNPJ: 24.343.646.0001-30</div>
-                        <div class="">Rua Tupinambaranas, 1085 - Centro - Tupã - SP - Cel: (14) 99849-1500</div>
-                    </div>
+                <h5 style="font-weight:bold;">Listagem de Produtos</h5>
+                <div class="row" id="dvListagem" runat="server">
+                    
                 </div>
             </div>
         </form>
