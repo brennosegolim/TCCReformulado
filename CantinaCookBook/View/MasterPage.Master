@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html style="background:url(../Img/background/body.jpg) repeat left top;">
     <head runat="server">
 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -10,12 +10,13 @@
 
         <!-- Icones -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <link href="../Img/Logo/Favicon.ico" rel="icon"/>
 
         <!-- CSS  -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-        <link href="../CSS/CantinaEstilos.css" rel="stylesheet" />
         <link href="../CSS/materialize.css" rel="stylesheet" />
         <link href="../CSS/materialize.min.css" rel="stylesheet" />
+        <link href="../CSS/CantinaEstilos.css" rel="stylesheet" />
 
         <!-- JS -->
         <script src="../JS/jquery-3.5.1.min.js"></script>

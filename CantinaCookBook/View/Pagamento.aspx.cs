@@ -1,4 +1,5 @@
-﻿using CantinaCookBook.Scripts;
+﻿using CantinaCookBook.Controller;
+using CantinaCookBook.Scripts;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,6 +21,27 @@ namespace CantinaCookBook.View
         {
             if (!IsPostBack)
             {
+
+                if (Session["Nivel"] != null)
+                {
+
+                    if (!Session["Nivel"].ToString().Equals("A"))
+                    {
+
+                        Response.Redirect("UserHome.aspx");
+
+                    }
+
+                }
+                else
+                {
+
+                    Session.RemoveAll();
+
+                    Response.Redirect("~/Index.aspx");
+
+                }
+
                 initialize();
             }
         }
@@ -351,7 +373,28 @@ namespace CantinaCookBook.View
         protected void btnConfirmarUsuario_Click(object sender, EventArgs e)
         {
 
+            DataTable dt = null;
+            ClienteCon clienteCon = new ClienteCon();
+
             int idCliente = Convert.ToInt32((sender as LinkButton).CommandArgument);
+
+            try
+            {
+
+                dt = clienteCon.SelectCliente(idCliente);
+
+            }
+            catch
+            {
+                //Nada
+            }
+
+            if(dt != null)
+            {
+
+                lblNomeCliente.Text = dt.Rows[0]["Nome"].ToString();
+
+            }
 
             txtIdCliente.Value = idCliente.ToString();
 
@@ -387,24 +430,67 @@ namespace CantinaCookBook.View
 
         }
 
+        //Método para cancelar o pagamento
+        protected void lnkCancelarPagamento_Click(object sender, EventArgs e)
+        {
+
+            txtValorRecebido.Value = "";
+
+            toogleFinalizar();
+
+        }
+
         //Método de impressão.
         protected void btnImprimirFolhaPagamento_Click(object sender, EventArgs e)
         {
 
+            DataTable dt = null;
+            
             bool ehCredito = txtEhCredito.Value.Equals("S");
+            string idCliente = txtIdCliente.Value;
+            string nome = "";
+            string dataInicio = "";
+            string dataFinal = "";
+            string sql = "";
 
-            if ( ! ehCredito ) 
+            if (!idCliente.Equals(""))
             {
 
-                Session.Add("RelNome", "Brenno Fernando Figueira Segolim");
-                Session.Add("RelValor",lblValor.Text);
+                sql = " EXEC stp_relCartaCobranca @IdCliente = " + idCliente;
 
-                Response.Write("<script> window.open('../Relatórios/RelFolhaPagamento.aspx','_blank'); </script>");
+                dt = con.getSelect(sql);
+
+                if(dt != null)
+                {
+
+                    nome = dt.Rows[0]["Nome"].ToString();
+                    dataInicio = dt.Rows[0]["DataInicial"].ToString();
+                    dataFinal = dt.Rows[0]["DataFinal"].ToString();
+
+                }
+
+                if (!ehCredito)
+                {
+
+                    Session.Add("RelNome", nome);
+                    Session.Add("RelDataInicio",dataInicio);
+                    Session.Add("RelDataFinal",dataFinal);
+                    Session.Add("RelValor", lblValor.Text);
+
+                    Response.Write("<script> window.open('../Relatórios/RelFolhaPagamento.aspx','_blank'); </script>");
+
+                }
+                else
+                {
+
+                    msgAlerta("Atenção ! O cliente não possue pagamentos pendentes. Por este motivo a carta de cobrança não será emitida.");
+
+                }
 
             } else
             {
 
-                msgAlerta("Atenção ! O cliente não possue pagamentos pendentes. Por este motivo a folha de pagamento não será emitida.");
+                msgAlerta("Não foi possível identificar o cliente, tente novamente mais tarde!");
 
             }
 
@@ -662,6 +748,14 @@ namespace CantinaCookBook.View
                 msgAlerta("Ocorreu um problema inesperado, informe ao admnistrador do sistema.");
 
             }
+
+        }
+
+        //Método para trocar cliente.
+        protected void lnkTrocarCliente_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect("Pagamento.aspx");
 
         }
 

@@ -10,6 +10,7 @@
 
         <!-- Icones -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <link href="../Img/Logo/Favicon.ico" rel="icon"/>
 
         <!-- CSS  -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />

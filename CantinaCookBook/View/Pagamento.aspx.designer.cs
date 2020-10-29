@@ -33,6 +33,15 @@ namespace CantinaCookBook.View
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvFinalizar;
 
         /// <summary>
+        /// Controle lnkCancelarPagamento.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkCancelarPagamento;
+
+        /// <summary>
         /// Controle dvPagamentoFinalizar.
         /// </summary>
         /// <remarks>
@@ -202,6 +211,24 @@ namespace CantinaCookBook.View
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvValorPendencia;
+
+        /// <summary>
+        /// Controle lnkTrocarCliente.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkTrocarCliente;
+
+        /// <summary>
+        /// Controle lblNomeCliente.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNomeCliente;
 
         /// <summary>
         /// Controle lblReais.

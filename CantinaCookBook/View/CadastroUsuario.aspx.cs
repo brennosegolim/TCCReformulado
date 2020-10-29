@@ -20,7 +20,27 @@ namespace CantinaCookBook.View
             if (!IsPostBack)
             {
 
-                if(Session["Metodo"] != null && Session["IdCliente"] != null)
+                if (Session["Nivel"] != null)
+                {
+
+                    if (!Session["Nivel"].ToString().Equals("A"))
+                    {
+
+                        Response.Redirect("UserHome.aspx");
+
+                    }
+
+                }
+                else
+                {
+
+                    Session.RemoveAll();
+
+                    Response.Redirect("~/Index.aspx");
+
+                }
+
+                if (Session["Metodo"] != null && Session["IdCliente"] != null)
                 {
 
                     if (Session["Metodo"].ToString().Equals("alterar") && ! Session["IdCliente"].ToString().Equals(""))

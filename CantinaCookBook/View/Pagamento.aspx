@@ -11,6 +11,9 @@
                 <div class="col s4 offset-s4" style="text-align:center; font-size:32px;">
                     PAGAMENTO
                 </div>
+                <div class="col s1 offset-s3" style="color:darkgray;">
+                    <asp:LinkButton ID="lnkCancelarPagamento" runat="server" OnClick="lnkCancelarPagamento_Click" style="margin-left:50%">X</asp:LinkButton>
+                </div>
             </div>
             <div class="row" id="dvPagamentoFinalizar" runat="server">
                 <div class="input-field col s3 offset-s1">
@@ -30,7 +33,7 @@
             </div>
             <div class="row" id="dvResultadoPagamento" runat="server"> 
                 <div class="row" style="font-size:18px; text-align:center; ">
-                    Atenção ! O valor informado foi maior que o valor pendente. Oquê deseja fazer ?
+                    Atenção! O valor informado foi maior que o valor pendente. O que deseja fazer ?
                 </div>
                 <br/>
                 <div class="row">
@@ -88,9 +91,22 @@
         </div>
         <div class="row" id="dvValores" runat="server">
             <div class="card col s12" id="dvValorPendencia" runat="server">
+                <div class="row">
+                    <div class="col s2 offset-s10" style="font-size:18px;">
+                        <asp:LinkButton ID="lnkTrocarCliente" runat="server" OnClick="lnkTrocarCliente_Click">Trocar Cliente</asp:LinkButton>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12" style="text-align:center;">
+                        <asp:Label ID="lblNomeCliente" runat="server" Text="" Font-Size="72px" Font-Bold="true"></asp:Label>
+                    </div>
+                </div>
+                <br/>
                 <div class="col s10" style="text-align:center;">
-                    <asp:Label ID="lblReais" runat="server" Text="R$" Font-Size="72px" Font-Bold="true"></asp:Label>
-                    <asp:Label ID="lblValor" runat="server" Text="0.00" Font-Size="72px" Font-Bold="true"></asp:Label>
+                    <div class="card col s3" style="background-color: #a9a9a900;margin-left: 47%;">
+                        <asp:Label ID="lblReais" runat="server" Text="R$" Font-Size="72px" Font-Bold="true"></asp:Label>
+                        <asp:Label ID="lblValor" runat="server" Text="0.00" Font-Size="72px" Font-Bold="true"></asp:Label>
+                    </div>
                 </div>
                 <div class="col s2" style="margin-top:15px;">
                     <div class="row">
@@ -112,11 +128,11 @@
                         </div>
                     </div>
                 </div>
-                <br/>
-                <br/>
-                <br/>
                 <div class="row">
-                    <div class="col s9 offset-s3">
+                    <br />
+                </div>
+                <div class="row">
+                    <div class="col s9 offset-s4" style="margin-top:35px;">
                         <div class="col s3">
                             <asp:Button ID="btnRealizarPagamento" runat="server" Text="Pagamento" style="border: 0px;background-color: #715348;color: white;height: 3em;width: 8em;cursor:pointer;" OnClick="btnRealizarPagamento_Click"/>
                         </div>

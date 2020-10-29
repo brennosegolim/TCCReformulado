@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" style="background:url(Img/background/body.jpg) repeat left top">
     <head runat="server">
 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -10,6 +10,7 @@
 
         <!-- Icones -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <link href="Img/Logo/Favicon.ico" rel="icon" />
 
         <!-- Includes CSS -->
         <link href="CSS/CantinaEstilos.css" rel="stylesheet" />
@@ -55,7 +56,7 @@
             <div class="container">
                 <div class="section">
                     <div class="row">
-                        <div class="col s12 m4">
+                        <div class="col s12 m4 ">
                             <div class="icon-block">
                                 <h2 class="center brown-text">
                                     <i class="material-icons">business</i>
@@ -66,7 +67,7 @@
                                 <p class="light">Cantina Cantina Cantina Cantina Cantina Cantina Cantina Cantina Cantina Cantina Cantina Cantina Cantina Cantina</p>
                             </div>
                         </div>
-                        <div class="col s12 m4">
+                        <div class="col s12 m4 ">
                              <div class="icon-block">
                                 <h2 class="center brown-text">
                                     <i class="material-icons">business</i>
@@ -77,7 +78,7 @@
                                 <p class="light">Cantina Cantina Cantina Cantina Cantina Cantina Cantina Cantina Cantina Cantina Cantina Cantina Cantina Cantina</p>
                             </div>
                         </div>
-                        <div class="col s12 m4">
+                        <div class="col s12 m4 ">
                              <div class="icon-block">
                                 <h2 class="center brown-text">
                                     <i class="material-icons">business</i>

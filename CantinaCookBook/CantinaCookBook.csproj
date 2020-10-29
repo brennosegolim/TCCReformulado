@@ -111,12 +111,14 @@
     <Content Include="CSS\materialize.min.css" />
     <Content Include="Filtros\FiltroPeriodo.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Img\background\body.jpg" />
     <Content Include="Img\banners\banner.jpg" />
     <Content Include="Img\botoes\adicionar.jpg" />
     <Content Include="Img\botoes\botaoEncerrar.jpg" />
     <Content Include="Img\botoes\cancelar.jpg" />
     <Content Include="Img\imgCadastro\cadastroProdutos.jpg" />
     <Content Include="Img\imgCadastro\CadastroUsuario.jpg" />
+    <Content Include="Img\Logo\Favicon.ico" />
     <Content Include="Img\Logo\LogoBase.jpg" />
     <Content Include="Index.aspx" />
     <Content Include="JS\jquery-3.5.1.min.js" />
@@ -136,6 +138,7 @@
     <Content Include="Relatórios\RelFolhaPagamento.aspx" />
     <Content Include="Relatórios\RelListaClientes.aspx" />
     <Content Include="Relatórios\RelListaProdutos.aspx" />
+    <Content Include="Relatórios\RelPendenciaPeriodo.aspx" />
     <Content Include="Relatórios\RelRankingProduto.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -213,6 +216,13 @@
     </Compile>
     <Compile Include="Relatórios\RelListaProdutos.aspx.designer.cs">
       <DependentUpon>RelListaProdutos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Relatórios\RelPendenciaPeriodo.aspx.cs">
+      <DependentUpon>RelPendenciaPeriodo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Relatórios\RelPendenciaPeriodo.aspx.designer.cs">
+      <DependentUpon>RelPendenciaPeriodo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Relatórios\RelRankingProduto.aspx.cs">
       <DependentUpon>RelRankingProduto.aspx</DependentUpon>

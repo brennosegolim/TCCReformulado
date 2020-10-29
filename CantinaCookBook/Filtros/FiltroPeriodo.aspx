@@ -26,7 +26,7 @@
 
     </head>
     <body>
-        <form id="form" runat="server" method="post" class="col s12">
+        <form id="form" runat="server" method="post" class="col s12" >
             <!-- Cabeçalho -->
             <nav runat="server" id="menu">
                 <div class="nav-wrapper brown">
@@ -50,8 +50,8 @@
                         PERÍODO
                         </div>
                     </div>
-                    <div class="row" id="dvDatas" runat="server">
-                        <div class="col s12 m8 offset-m1 xl7 offset-xl1" runat="server">
+                    <div class="row" id="dvDatas" runat="server" style="padding:25px;">
+                        <div class="col s12" runat="server">
                             <div class="input-field col s5" runat="server">
                                 <i class="material-icons prefix">date_range</i>
                                 <input maxlength="10" placeholder="" id="txtDataInicial" type="text" class="validate date" data-position="top" data-tooltip="Data Inicial" runat="server"/>
@@ -67,7 +67,7 @@
                             <div class="col s2 offset-s1" style="margin-top:2%;">
                                 <asp:Button ID="btnImprimir" runat="server" Text="Imprimir" style="border: 0px;background-color: #715348;color: white;height: 3em;width: 8em; cursor:pointer;" OnClick="btnImprimir_Click"/>
                             </div>
-                            <div class="col s2">
+                            <div class="col s2" style="margin-top:2%;">
                                 <input id="btnCancelar" type="button" value="Cancelar" style="border: 0px;background-color: #715348;color: white;height: 3em;width: 8em; cursor:pointer;" onclick="cancelar();"/>
                             </div>
                         </div>

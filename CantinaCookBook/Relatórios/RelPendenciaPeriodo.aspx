@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RelListaProdutos.aspx.cs" Inherits="CantinaCookBook.Relatórios.RelListaProdutos" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RelPendenciaPeriodo.aspx.cs" Inherits="CantinaCookBook.Relatórios.RelPendenciaPeriodo" %>
 
 <!DOCTYPE html>
 
@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="row" style="text-align:center; font-family:'Times New Roman';">
-                <h5 style="font-weight:bold;">Listagem de Produtos</h5>
+                <h5 style="font-weight:bold;">Listagem de Clientes</h5>
                 <div class="row" id="dvListagem" runat="server">
                     
                 </div>

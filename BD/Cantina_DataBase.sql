@@ -738,6 +738,54 @@ BEGIN
 
 END
 
+GO
+
+/*Procedure Carta Pagamento*/
+CREATE OR ALTER PROCEDURE stp_relCartaCobranca (
+	
+	@IdCliente INT
+
+)
+AS
+BEGIN
+
+	IF EXISTS (
+
+		SELECT *
+		  FROM Cliente CL
+		 INNER JOIN Pagamento PG ON PG.IdCliente = CL.IdCliente
+		 WHERE CL.IdCliente = @IdCliente
+	 
+	 )
+
+		BEGIN
+
+			 SELECT TOP 1 CL.Nome,
+				   CONVERT(VARCHAR(10),PG.[Data],103) as DataInicial,
+				   CONVERT(VARCHAR(10),GETDATE(),103) as DataFinal
+			  FROM Cliente CL
+			 INNER JOIN Pagamento PG ON PG.IdCliente = CL.IdCliente
+			 WHERE CL.IdCliente = @IdCliente
+			 ORDER BY PG.[Data] DESC
+
+		END
+	 
+	 ELSE
+
+		BEGIN
+
+			SELECT TOP 1 CL.Nome,
+				   CONVERT(VARCHAR(10),GETDATE(),103) as DataInicial,
+				   CONVERT(VARCHAR(10),GETDATE(),103) as DataFinal
+			  FROM Cliente CL
+			 WHERE CL.IdCliente = @IdCliente
+
+		END
+
+END
+
+GO
+
 /*INSERT nas tabelas*/
 
 --Clientes

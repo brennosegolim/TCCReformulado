@@ -5,3 +5,7 @@
     height: 3em;
     width: 8em;
 }
+
+.fundo-pagina {
+    background: url(../Img/background/body.jpg) repeat left top
+}

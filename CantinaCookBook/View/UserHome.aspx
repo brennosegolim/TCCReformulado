@@ -79,7 +79,7 @@
                         </div>
                     </div>
                     <div id="dvAdministrador" runat="server">
-                        <div class="row">
+                        <div class="row card" style="padding:25px;min-height:500px">
                             <asp:GridView ID="grdClientes" runat="server" AutoGenerateColumns="false">
                                 <Columns>
                                     <asp:TemplateField HeaderText="Ações">
