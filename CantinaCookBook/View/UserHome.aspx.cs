@@ -4,6 +4,7 @@ using CantinaCookBook.Scripts;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -76,6 +77,7 @@ namespace CantinaCookBook.View
 
                             dvUsuario.Visible = true;
                             dvSelectDependente.Visible = false;
+                            carregarValor(idCliente);
                             gerarHistorico(idCliente, "0");
 
                             if (temResponsavel(idCliente))
@@ -365,13 +367,18 @@ namespace CantinaCookBook.View
         {
 
             string idCliente = cbxDepentes.SelectedValue;
+            ClienteCon clienteCon = new ClienteCon();
 
             if (idCliente != null && !idCliente.Equals(""))
             {
 
+                DataTable dt = clienteCon.SelectCliente(int.Parse(idCliente));
+
+                dvNomeUsuario.InnerText = dt.Rows[0]["Nome"].ToString();
                 dvUsuario.Visible = true;
                 dvSelectDependente.Visible = false;
                 dvSelecionarOutro.Visible = true;
+                carregarValor(idCliente);
                 gerarHistorico(idCliente, "0");
                 setLimiteGasto(int.Parse(idCliente));
 
@@ -556,6 +563,46 @@ namespace CantinaCookBook.View
 
                 grdClientes.DataSource = dt;
                 grdClientes.DataBind();
+
+            }
+
+        }
+
+        private void carregarValor(string idCliente)
+        {
+
+            try
+            {
+
+                DataTable dt = null;
+
+                decimal diferenca = new decimal(0.0);
+                string cor = "red";
+                string sql = "";
+
+                sql = "EXEC getSaldo @IdCliente = " + idCliente.ToString();
+
+                dt = con.getSelect(sql);
+
+                if (dt != null)
+                {
+
+                    decimal.TryParse(dt.Rows[0]["ValorDiferenca"].ToString(), out diferenca);
+
+                }
+
+                if (diferenca <= 0) { cor = "green"; diferenca = diferenca * -1; }
+
+                lblReais.Style.Add("color", cor);
+                lblValor.Style.Add("color", cor);
+
+                lblValor.Text = diferenca.ToString("0.00", CultureInfo.InvariantCulture);
+
+            }
+            catch
+            {
+
+                msgAlerta("Não foi possível carregar os valores ! Tente novamente mais tarde ou informe ao suporte do Sistema.");
 
             }
 

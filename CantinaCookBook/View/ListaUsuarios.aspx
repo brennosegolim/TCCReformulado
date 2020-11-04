@@ -7,7 +7,7 @@
             <br />
             <div class="col s2">
                 <div style="padding:0px; float:right;">
-                    <asp:Button ID="btnVoltar" runat="server" Text="Voltar" CssClass="waves-effect waves-light btn-small grey lighten-1" OnClick="btnVoltar_Click"/>
+                    <asp:Button ID="btnVoltar" runat="server" Text="Voltar" CssClass="waves-effect waves-light btn-small grey lighten-1" OnClientClick="javascript:window.history.back();"/>
                 </div>
             </div>
             <div class="row">
@@ -21,6 +21,9 @@
             </div>
             <div class="row">
                 <div class="col s12">
+                    <div class="col s2" style="padding:0px;">
+                        <asp:Button ID="btnAdicionarNovo" runat="server" Text="+" style="border: 0px;font-size:larger;font-weight:bold; background-color: #715348;color: white;height: 2em;width: 3em; cursor:pointer;" OnClick="btnAdicionarNovo_Click"/>
+                    </div>
                     <asp:GridView ID="grdUsuarios" runat="server" AutoGenerateColumns="false">
                         <Columns>
                             <asp:TemplateField HeaderText="Ações">

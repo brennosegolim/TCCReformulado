@@ -146,6 +146,14 @@ namespace CantinaCookBook.View
 
             string sql = "";
             string nome = "";
+            string idCliente = "";
+
+            if(Session["ClienteResponsavel"] != null)
+            {
+
+                idCliente = Session["ClienteResponsavel"].ToString();
+
+            }
 
             nome = txtNome.Value;
 
@@ -155,7 +163,8 @@ namespace CantinaCookBook.View
                      FROM Cliente CL                                            
                           INNER JOIN Acesso AC 
                      	  ON AC.IdCliente = CL.IdCliente         
-                     WHERE AC.Nivel = 'U'                                        
+                     WHERE AC.Nivel = 'U'
+                       AND CL.Idcliente <> "+ idCliente + @"
                        AND CL.IdCliente <> ISNULL(CL.IdResponsavel,0) 
                        AND NOT EXISTS( SELECT * 
                                        FROM Cliente CI 

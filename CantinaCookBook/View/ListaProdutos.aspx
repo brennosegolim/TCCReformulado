@@ -16,6 +16,9 @@
             </div>
             <div class="row">
                 <div class="col s10 offset-s1">
+                    <div class="col s2" style="padding:0px;">
+                        <asp:Button ID="btnAdicionarNovo" runat="server" Text="+" style="border: 0px;font-size:larger;font-weight:bold; background-color: #715348;color: white;height: 2em;width: 3em; cursor:pointer;" OnClick="btnAdicionarNovo_Click"/>
+                    </div>
                     <asp:GridView ID="grdProdutos" runat="server" AutoGenerateColumns="false">
                         <Columns>
                             <asp:TemplateField HeaderText="Ações">

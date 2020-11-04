@@ -116,5 +116,15 @@ namespace CantinaCookBook.View
             }
 
         }
+
+        protected void btnAdicionarNovo_Click(object sender, EventArgs e)
+        {
+
+            Session.Remove("IdProduto");
+            Session.Remove("Metodo");
+
+            Response.Redirect("CadastroProduto.aspx");
+
+        }
     }
 }

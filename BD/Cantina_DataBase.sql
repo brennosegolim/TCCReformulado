@@ -170,6 +170,44 @@ END
 
 GO
 
+--Criando a tabela de imagens dos clientes
+IF NOT EXISTS( SELECT *
+                 FROM SysObjects
+				WHERE Name = 'Imagem_Cliente'
+				  AND type = 'U' )
+
+BEGIN
+
+	CREATE TABLE Imagem_Cliente ( IdImagem_Cliente INT IDENTITY(1,1) NOT NULL,
+	                                     IdCliente INT               NOT NULL,
+							               Caminho VARCHAR(MAX)      NOT NULL
+							 
+		   CONSTRAINT PK_IdImagem_Cliente PRIMARY KEY CLUSTERED (IdImagem_Cliente),
+		   CONSTRAINT FK_IdImagem_Cliente_IdCliente FOREIGN KEY (IdCliente) REFERENCES Cliente(IdCliente))
+
+END
+
+GO
+
+--Criando a tabela de noticias.
+IF NOT EXISTS( SELECT *
+                 FROM SysObjects
+				WHERE Name = 'Noticia'
+				  AND type = 'U' )
+
+BEGIN
+
+	CREATE TABLE Noticia ( IdNoticia INT IDENTITY(1,1) NOT NULL,
+	                       Cabeçalho VARCHAR(100)      NOT NULL,
+						   Texto     VARCHAR(MAX)      NOT NULL,
+						   [Data]    DATETIME          NOT NULL
+							 
+		   CONSTRAINT PK_IdNoticia PRIMARY KEY CLUSTERED (IdNoticia))
+
+END
+
+GO
+
 /* PROCEDURES */
 
 /* Cliente */
@@ -183,13 +221,14 @@ CREATE OR ALTER PROCEDURE InsertCliente(
 	@Celular        VARCHAR(20),
 	@Email          VARCHAR(70),
 	@CPF            VARCHAR(11),
-	@IdResponsavel  INT
+	@IdResponsavel  INT,
+	@Autenticado    BIT
 
 ) AS
 BEGIN
 
-	INSERT INTO Cliente(Nome,DataNascimento,Telefone,Celular,Email,CPF,IdResponsavel) 
-	VALUES (@Nome,@DataNascimento,@Telefone,@Celular,@Email,@CPF,@IdResponsavel)
+	INSERT INTO Cliente(Nome,DataNascimento,Telefone,Celular,Email,CPF,IdResponsavel,Autenticado) 
+	VALUES (@Nome,@DataNascimento,@Telefone,@Celular,@Email,@CPF,@IdResponsavel,@Autenticado)
 
 END
 

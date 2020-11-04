@@ -56,6 +56,7 @@ namespace CantinaCookBook.Controller
                 cmd.Parameters.AddWithValue("@Email", cliente.Email);
                 cmd.Parameters.AddWithValue("@CPF", cliente.CPF);
                 cmd.Parameters.AddWithValue("@IdResponsavel", cliente.IdResponsavel);
+                cmd.Parameters.AddWithValue("@Autenticado", cliente.Autenticado);
 
                 //Abrindo a conexão com o banco de dados.
                 _con.Open();

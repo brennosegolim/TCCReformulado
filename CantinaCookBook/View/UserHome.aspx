@@ -31,8 +31,40 @@
                         <div class="row" runat="server" style="margin-top:5%">
                             <div class="col s12" style="text-align:center;">
                                 <div class="row">
-                                    <div class="col s12 header" id="dvNomeUsuario" runat="server" style="text-align:center;text-transform:uppercase;font-size:xx-large"></div>
-                                 </div>
+                                    <div class="col s12 header card" id="dvNomeUsuario" runat="server" style="text-align:center;text-transform:uppercase;font-size:xx-large"></div>
+                                </div>
+                                <div class="row">
+                                    <div id="dvPagamento" class="card col s12">
+                                        <h4 style="margin-top: 5px;">VALOR PENDENTE/CRÉDITO</h4>
+                                        <br/>
+                                        <div class="col s10" style="text-align:center;">
+                                            <div class="card col s3" style="background-color: #a9a9a900;margin-left: 47%;">
+                                                <asp:Label ID="lblReais" runat="server" Text="R$" Font-Size="72px" Font-Bold="true"></asp:Label>
+                                                <asp:Label ID="lblValor" runat="server" Text="0.00" Font-Size="72px" Font-Bold="true"></asp:Label>
+                                            </div>
+                                        </div>
+                                        <div class="col s2" style="margin-top:15px;text-align:left;">
+                                            <div class="row">
+                                                <div class="col s3">
+                                                    <div style="background-color:red; width:30px; height:30px; border: solid 1px;">
+                                                    </div>
+                                                </div>
+                                                <div class="col s9">
+                                                    <div style="margin-top:3px;">Valor pendente.</div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col s3">
+                                                    <div style="background-color:green; width:30px; height:30px; border: solid 1px;">
+                                                    </div>
+                                                </div>
+                                                <div class="col s9">
+                                                    <div style="margin-top:3px;">Crédito.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div id="dvHistórico" class="card col s12" style="min-height:500px;max-height:600px; overflow:auto;" runat="server">
                                         <div class="row">

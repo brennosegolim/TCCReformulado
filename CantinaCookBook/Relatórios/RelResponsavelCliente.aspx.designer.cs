@@ -7,47 +7,38 @@
 // </gerado automaticamente>
 //------------------------------------------------------------------------------
 
-namespace CantinaCookBook.View
+namespace CantinaCookBook.Relatórios
 {
 
 
-    public partial class ListaProdutos
+    public partial class RelResponsavelCliente
     {
 
         /// <summary>
-        /// Controle txtDescricao.
+        /// Controle litNome.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtDescricao;
+        protected global::System.Web.UI.WebControls.Literal litNome;
 
         /// <summary>
-        /// Controle btnBuscar.
+        /// Controle frmRel.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscar;
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmRel;
 
         /// <summary>
-        /// Controle btnAdicionarNovo.
+        /// Controle dvListagem.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAdicionarNovo;
-
-        /// <summary>
-        /// Controle grdProdutos.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdProdutos;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvListagem;
     }
 }

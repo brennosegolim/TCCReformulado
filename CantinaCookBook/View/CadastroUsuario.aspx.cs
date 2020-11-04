@@ -40,10 +40,10 @@ namespace CantinaCookBook.View
 
                 }
 
-                if (Session["Metodo"] != null && Session["IdCliente"] != null)
+                if (Session["Metodo"] != null && Session["IdClienteForm"] != null)
                 {
 
-                    if (Session["Metodo"].ToString().Equals("alterar") && ! Session["IdCliente"].ToString().Equals(""))
+                    if (Session["Metodo"].ToString().Equals("alterar") && ! Session["IdClienteForm"].ToString().Equals(""))
                     {
 
                         DataTable dt = null;
@@ -60,7 +60,7 @@ namespace CantinaCookBook.View
 	                               + "        AC.Nivel "
                                    + "   FROM Cliente CL "
                                    + "  INNER JOIN Acesso AC ON AC.IdCliente = CL.IdCliente "
-                                   + "  WHERE CL.IdCliente = " + Session["IdCliente"].ToString();
+                                   + "  WHERE CL.IdCliente = " + Session["IdClienteForm"].ToString();
 
                         dt = con.getSelect(sql);
 
@@ -80,7 +80,7 @@ namespace CantinaCookBook.View
                             btnVerSenha.Disabled = true;
                             btnConfirmar.Value = "Alterar";
                             metodo.Value = "alterar";
-                            idCliente.Value = Session["IdCliente"].ToString();
+                            idCliente.Value = Session["IdClienteForm"].ToString();
 
                             txtNome.Value = nome;
                             txtEmail.Value = email;
@@ -133,6 +133,7 @@ namespace CantinaCookBook.View
                     cliente.Email = email;
                     cliente.CPF = cpf;
                     cliente.DataNascimento = dataNascimento;
+                    cliente.Autenticado = true;
                     cliente.Telefone = telefone;
                     cliente.Celular = celular;
 

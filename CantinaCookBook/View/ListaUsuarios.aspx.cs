@@ -54,7 +54,7 @@ namespace CantinaCookBook.View
 
             int idCliente = Convert.ToInt32((sender as LinkButton).CommandArgument);
 
-            Session.Add("IdCliente",idCliente);
+            Session.Add("IdClienteForm", idCliente);
             Session.Add("Metodo","alterar");
 
             Response.Redirect("CadastroUsuario.aspx");
@@ -224,6 +224,16 @@ namespace CantinaCookBook.View
         protected void btnVoltar_Click(object sender, EventArgs e)
         {
             Response.Redirect("ListaUsuarios.aspx");
+        }
+
+        protected void btnAdicionarNovo_Click(object sender, EventArgs e)
+        {
+
+            Session.Remove("IdClienteForm");
+            Session.Remove("Metodo");
+
+            Response.Redirect("CadastroUsuario.aspx");
+
         }
     }
 }

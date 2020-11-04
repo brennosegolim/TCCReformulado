@@ -44,6 +44,11 @@
         /// </summary>
         public int IdResponsavel { get; set; }
 
+        /// <summary>
+        /// Atributo da classe cliente referente a autenticação do usuário.
+        /// </summary>
+        public bool Autenticado { get; set; }
+
         #endregion
 
         #region Métodos
@@ -62,6 +67,7 @@
             this.Email = null;
             this.CPF = null;
             this.IdCliente = 0;
+            this.Autenticado = false;
 
         }
         #endregion

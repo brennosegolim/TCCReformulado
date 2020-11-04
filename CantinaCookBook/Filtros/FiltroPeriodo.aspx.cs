@@ -66,7 +66,7 @@ namespace CantinaCookBook.Filtros
                 if (Session["Nivel"].ToString().Equals("A"))
                 {
 
-                    Response.Redirect("Cadastros.aspx");
+                    Response.Redirect("~/View/Cadastros.aspx");
 
                 }
 
@@ -86,7 +86,7 @@ namespace CantinaCookBook.Filtros
         protected void lnkHome_Click(object sender, EventArgs e)
         {
 
-            Response.Redirect("UserHome.aspx");
+            Response.Redirect("~/View/UserHome.aspx");
 
         }
 
@@ -99,7 +99,7 @@ namespace CantinaCookBook.Filtros
                 if (Session["Nivel"].ToString().Equals("A"))
                 {
 
-                    Response.Redirect("CadastroVendas.aspx");
+                    Response.Redirect("~/View/CadastroVendas.aspx");
 
                 }
 
@@ -116,7 +116,7 @@ namespace CantinaCookBook.Filtros
                 if (Session["Nivel"].ToString().Equals("A"))
                 {
 
-                    Response.Redirect("Pagamento.aspx");
+                    Response.Redirect("~/View/Pagamento.aspx");
 
                 }
 
@@ -132,7 +132,7 @@ namespace CantinaCookBook.Filtros
                 if (Session["Nivel"].ToString().Equals("A"))
                 {
 
-                    Response.Redirect("Relatorios.aspx");
+                    Response.Redirect("~/View/Relatorios.aspx");
 
                 }
 

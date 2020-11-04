@@ -49,7 +49,8 @@ namespace CantinaCookBook.Relatórios
                           INNER JOIN Venda  VE ON VE.IdCliente = CL.IdCliente
                           WHERE Nivel = 'U'
                             AND Autenticado = 1
-                            AND VE.[Data] BETWEEN '"+ dataInicio +"' AND '" + datafim +"'";
+                            AND VE.[Data] BETWEEN '"+ dataInicio +"' AND '" + datafim +"'"
+                       +" ORDER BY CL.Nome";
 
                 //Recebendo o resultado em um datatable
                 dt = con.getSelect(sql);

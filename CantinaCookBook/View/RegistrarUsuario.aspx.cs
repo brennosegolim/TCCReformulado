@@ -51,6 +51,7 @@ namespace CantinaCookBook.View
                 cliente.DataNascimento = dataNascimento;
                 cliente.Telefone = telefone;
                 cliente.Celular = celular;
+                cliente.Autenticado = false;
 
                 sucesso = clienteCon.AdicionarCliente(cliente);
 
