@@ -69,6 +69,8 @@
                     </div>
                 </div>
                 <div class="row" id="dvProduto">
+                    <h5>Selecionar Novo Produto.</h5>
+                    <br/>
                     <div style="padding:5px;">
                         <asp:GridView ID="grdProduto" runat="server" AutoGenerateColumns="false">
                             <Columns>
@@ -85,6 +87,8 @@
                     </div>
                 </div>
                 <div class="row" id="dvProdutoVenda">
+                    <h5>Produtos Selecionados.</h5>
+                    <br/>
                     <div style="padding:5px;">
                         <asp:GridView ID="grdProdutoVenda" runat="server" AutoGenerateColumns="false">
                             <Columns>

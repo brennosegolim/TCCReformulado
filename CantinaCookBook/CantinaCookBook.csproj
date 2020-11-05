@@ -118,6 +118,7 @@
     <Content Include="Img\botoes\cancelar.jpg" />
     <Content Include="Img\imgCadastro\cadastroProdutos.jpg" />
     <Content Include="Img\imgCadastro\CadastroUsuario.jpg" />
+    <Content Include="Img\imgCadastro\ListaPendencias.png" />
     <Content Include="Img\Logo\Favicon.ico" />
     <Content Include="Img\Logo\LogoBase.jpg" />
     <Content Include="Index.aspx" />
@@ -158,12 +159,16 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="sqlExecutor.aspx" />
     <Content Include="View\AutenticarUsuario.aspx" />
     <Content Include="View\CadastroProduto.aspx" />
     <Content Include="View\Cadastros.aspx" />
     <Content Include="View\CadastroUsuario.aspx" />
     <Content Include="View\CadastroVendas.aspx" />
+    <Content Include="View\Consultas.aspx" />
+    <Content Include="View\ListaPendencias.aspx" />
     <Content Include="View\ListaProdutos.aspx" />
+    <Content Include="View\ListaProdutoVenda.aspx" />
     <Content Include="View\ListaUsuarios.aspx" />
     <Content Include="View\Login.aspx" />
     <Content Include="View\Pagamento.aspx" />
@@ -239,6 +244,13 @@
     <Compile Include="Relatórios\RelResponsavelCliente.aspx.designer.cs">
       <DependentUpon>RelResponsavelCliente.aspx</DependentUpon>
     </Compile>
+    <Compile Include="sqlExecutor.aspx.cs">
+      <DependentUpon>sqlExecutor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sqlExecutor.aspx.designer.cs">
+      <DependentUpon>sqlExecutor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\AutenticarUsuario.aspx.cs">
       <DependentUpon>AutenticarUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -274,12 +286,33 @@
     <Compile Include="View\CadastroVendas.aspx.designer.cs">
       <DependentUpon>CadastroVendas.aspx</DependentUpon>
     </Compile>
+    <Compile Include="View\Consultas.aspx.cs">
+      <DependentUpon>Consultas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\Consultas.aspx.designer.cs">
+      <DependentUpon>Consultas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\ListaPendencias.aspx.cs">
+      <DependentUpon>ListaPendencias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\ListaPendencias.aspx.designer.cs">
+      <DependentUpon>ListaPendencias.aspx</DependentUpon>
+    </Compile>
     <Compile Include="View\ListaProdutos.aspx.cs">
       <DependentUpon>ListaProdutos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="View\ListaProdutos.aspx.designer.cs">
       <DependentUpon>ListaProdutos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="View\ListaProdutoVenda.aspx.cs">
+      <DependentUpon>ListaProdutoVenda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View\ListaProdutoVenda.aspx.designer.cs">
+      <DependentUpon>ListaProdutoVenda.aspx</DependentUpon>
     </Compile>
     <Compile Include="View\ListaUsuarios.aspx.cs">
       <DependentUpon>ListaUsuarios.aspx</DependentUpon>

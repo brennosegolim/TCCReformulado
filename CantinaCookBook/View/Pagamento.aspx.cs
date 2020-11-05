@@ -164,7 +164,8 @@ namespace CantinaCookBook.View
                               INNER JOIN Acesso AC ON AC.IdCliente = CL.IdCliente
                               WHERE AC.Nivel = 'U'
                                 AND CL.Autenticado = 1
-                                AND Nome LIKE '%" + nome + "%'";
+                                AND Nome LIKE '%" + nome + "%'"
+                           +" ORDER BY CL.Nome ";
 
                     dt = con.getSelect(sql);
 
@@ -247,7 +248,8 @@ namespace CantinaCookBook.View
 			                     END) as Tipo
                       FROM Pagamento
                      WHERE IdCliente = " + idCliente
-                 + " ORDER BY Data DESC";
+                + @" ORDER BY CAST([Data] as DATE) DESC,
+                           CAST([Data] as TIME) DESC";
 
             try
             {

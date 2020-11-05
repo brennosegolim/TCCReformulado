@@ -158,9 +158,9 @@ namespace CantinaCookBook.View
             int idade = 0;
             string sql = "";
 
-            sql = " SELECT DATEDIFF(YEAR,DataNascimento,GETDATE()) as Idade "
-                + "   FROM Cliente                                          "
-                + "  WHERE IdCliente = " + idCliente.ToString();
+            sql = @" SELECT DATEDIFF(YEAR,DataNascimento,GETDATE()) as Idade 
+                       FROM Cliente                                          
+                      WHERE IdCliente = " + idCliente.ToString();
 
             dt = con.getSelect(sql);
 
@@ -179,8 +179,34 @@ namespace CantinaCookBook.View
             } else
             {
 
-                Session.Add("ClienteResponsavel",idCliente);
-                Response.Redirect("VincularClientes.aspx");
+                dt = null;
+
+                sql = @"SELECT AC.Nivel
+                      FROM Cliente CL
+                     INNER JOIN Acesso AC ON AC.IdCliente = CL.IdCliente
+                     WHERE CL.IdCliente = " + idCliente.ToString();
+
+                dt = con.getSelect(sql);
+
+                if (dt != null)
+                {
+
+                    string nivel = dt.Rows[0]["Nivel"].ToString();
+
+                    if (nivel.Equals("U"))
+                    {
+
+                        Session.Add("ClienteResponsavel", idCliente);
+                        Response.Redirect("VincularClientes.aspx");
+                    
+                    } else
+                    {
+
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Atenção, esse cliente precisa ser usuário.')", true);
+
+                    }
+
+                }
 
             }
 

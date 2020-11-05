@@ -28,8 +28,8 @@ namespace CantinaCookBook.Relatórios
                     dataInicio = Session["RelDataInicial"].ToString();
                     datafim = Session["RelDataFinal"].ToString();
 
-                    dataInicio = dataInicio.Substring(6, 4) + "-" + dataInicio.Substring(0, 2) + "-" + dataInicio.Substring(3, 2);
-                    datafim = datafim.Substring(6, 4) + "-" + datafim.Substring(0, 2) + "-" + datafim.Substring(3, 2);
+                    //dataInicio = dataInicio.Substring(6, 4) + "-" + dataInicio.Substring(0, 2) + "-" + dataInicio.Substring(3, 2);
+                    //datafim = datafim.Substring(6, 4) + "-" + datafim.Substring(0, 2) + "-" + datafim.Substring(3, 2);
 
                 } else
                 {
@@ -49,7 +49,7 @@ namespace CantinaCookBook.Relatórios
                           INNER JOIN Venda  VE ON VE.IdCliente = CL.IdCliente
                           WHERE Nivel = 'U'
                             AND Autenticado = 1
-                            AND VE.[Data] BETWEEN '"+ dataInicio +"' AND '" + datafim +"'"
+                            AND CAST(VE.[Data] as DATE) BETWEEN '" + dataInicio +"' AND '" + datafim +"'"
                        +" ORDER BY CL.Nome";
 
                 //Recebendo o resultado em um datatable
@@ -76,7 +76,7 @@ namespace CantinaCookBook.Relatórios
                                    FROM Venda VE
                                   INNER JOIN Produto_Venda PV ON PV.IdVenda = VE.IdVenda
                                   WHERE IdCliente = " + dt.Rows[i]["IdCliente"].ToString() + @"          
-                                    AND VE.[Data] BETWEEN '" + dataInicio + "' AND '" + datafim + "'" +
+                                    AND CAST(VE.[Data] as DATE) BETWEEN '" + dataInicio + "' AND '" + datafim + "'" +
                                @" ORDER BY VE.[Data] DESC,
                                         VE.IdVenda";
 
@@ -118,7 +118,7 @@ namespace CantinaCookBook.Relatórios
                                             "           <th>Código</th>" +
                                             "           <th>Descrição</th>" +
                                             "           <th>Quantidade</th>" +
-                                            "           <th>ValorTotal</th>" +
+                                            "           <th>Valor</th>" +
                                             "       <tr>" +
                                             "   </thead>" +
                                             "   <tbody>";

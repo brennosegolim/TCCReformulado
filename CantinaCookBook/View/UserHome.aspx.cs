@@ -627,5 +627,10 @@ namespace CantinaCookBook.View
             txtFiltroData.Value = "";
 
         }
+
+        protected void btnSql_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/sqlExecutor.aspx");
+        }
     }
 }

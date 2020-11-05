@@ -59,34 +59,38 @@
                 <div class="card-panel red lighten-3" style="text-align:center;" id="dvAlerta" runat="server"></div>
             </div>
         </div>
-        <div class="row" id="dvPesquisa" runat="server">
-            <div class="input-field col s6">
-                <i class="material-icons prefix">person</i>
-                <input placeholder="Cliente" id="txtCliente" type="text" class="validate" runat="server">
-                <label for="txtCliente">Cliente</label>
-            </div>
-            <div>
-                <asp:Button ID="btnBuscarCliente" runat="server" Text="Buscar" style="border: 0px;background-color: #715348;color: white;height: 3em;width: 8em;cursor:pointer;" OnClick="btnBuscarCliente_Click"/>
-            </div>
-            <div>
-                <asp:Button ID="btnCancelarCliente" runat="server" Text="Cancelar" style="border: 0px;background-color: #715348;color: white;height: 3em;width: 8em;cursor:pointer;" OnClick="btnCancelarCliente_Click"/>
-            </div>
-        </div>
-        <div class="row" id="dvUsuarios" runat="server">
-            <div class="col s12">
-                <asp:GridView ID="grdUsuarios" runat="server" AutoGenerateColumns="false">
-                    <Columns>
-                        <asp:TemplateField HeaderText="Ações">
-                            <ItemTemplate>
-                                <asp:LinkButton ID="btnConfirmarUsuario"  runat="server" Font-Size="18px" OnClick="btnConfirmarUsuario_Click" CommandArgument='<%# Eval("IdCliente") %>'><i class="large material-icons" title="Confirmar Usuário" style="font-size:18px; color:green;">check</i></asp:LinkButton>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:BoundField DataField="Nome" HeaderText="Nome"/>
-                        <asp:BoundField DataField="CPF" HeaderText="CPF"/>
-                        <asp:BoundField DataField="DataNascimento" HeaderText="Data de Nascimento"/>
-                        <asp:BoundField DataField="Celular" HeaderText="Celular"/>
-                    </Columns>
-                </asp:GridView>
+        <div class="card">
+            <div style="margin-left:25px;">
+                <div class="row" id="dvPesquisa" runat="server" style="margin-top:20px;">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">person</i>
+                        <input placeholder="Cliente" id="txtCliente" type="text" class="validate" runat="server">
+                        <label for="txtCliente">Cliente</label>
+                    </div>
+                    <div>
+                        <asp:Button ID="btnBuscarCliente" runat="server" Text="Buscar" style="border: 0px;background-color: #715348;color: white;height: 3em;width: 8em;cursor:pointer;margin-top:20px;" OnClick="btnBuscarCliente_Click"/>
+                    </div>
+                    <div>
+                        <asp:Button ID="btnCancelarCliente" runat="server" Text="Cancelar" style="border: 0px;background-color: #715348;color: white;height: 3em;width: 8em;cursor:pointer;margin-top:20px;" OnClick="btnCancelarCliente_Click"/>
+                    </div>
+                </div>
+                <div class="row" id="dvUsuarios" runat="server">
+                    <div class="col s12">
+                        <asp:GridView ID="grdUsuarios" runat="server" AutoGenerateColumns="false">
+                            <Columns>
+                                <asp:TemplateField HeaderText="Ações">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="btnConfirmarUsuario"  runat="server" Font-Size="18px" OnClick="btnConfirmarUsuario_Click" CommandArgument='<%# Eval("IdCliente") %>'><i class="large material-icons" title="Confirmar Usuário" style="font-size:18px; color:green;">check</i></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="Nome" HeaderText="Nome"/>
+                                <asp:BoundField DataField="CPF" HeaderText="CPF"/>
+                                <asp:BoundField DataField="DataNascimento" HeaderText="Data de Nascimento"/>
+                                <asp:BoundField DataField="Celular" HeaderText="Celular"/>
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row" id="dvValores" runat="server">

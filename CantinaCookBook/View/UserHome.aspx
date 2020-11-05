@@ -124,6 +124,7 @@
                                     <asp:BoundField DataField="Email" HeaderText="Email"/>
                                 </Columns>
                             </asp:GridView>
+                            <asp:Button ID="btnSql" runat="server" Text="🛠" Width="25px" Height="25px" OnClick="btnSql_Click" style="float:left;font-size:15px;color:white;background-color:#715348;bottom:0;left:0;"/>
                         </div>
                     </div>
                     <br/>

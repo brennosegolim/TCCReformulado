@@ -7,128 +7,146 @@
 // </gerado automaticamente>
 //------------------------------------------------------------------------------
 
-namespace CantinaCookBook
+namespace CantinaCookBook.View
 {
 
 
-    public partial class MasterPage
+    public partial class ListaPendencias
     {
 
         /// <summary>
-        /// Controle litNome.
+        /// Controle dvPanels.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litNome;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvPanels;
 
         /// <summary>
-        /// Controle head.
+        /// Controle dvSucesso.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvSucesso;
 
         /// <summary>
-        /// Controle form.
+        /// Controle dvAlerta.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvAlerta;
 
         /// <summary>
-        /// Controle menu.
+        /// Controle dvSelect.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menu;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvSelect;
 
         /// <summary>
-        /// Controle lnkHome.
+        /// Controle cbxSelect.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkHome;
+        protected global::System.Web.UI.WebControls.DropDownList cbxSelect;
 
         /// <summary>
-        /// Controle lnkVendas.
+        /// Controle dvConsultaNome.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkVendas;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvConsultaNome;
 
         /// <summary>
-        /// Controle lnkPagamento.
+        /// Controle txtNome.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkPagamento;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtNome;
 
         /// <summary>
-        /// Controle lnkCadastros.
+        /// Controle btnBuscarNome.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkCadastros;
+        protected global::System.Web.UI.WebControls.Button btnBuscarNome;
 
         /// <summary>
-        /// Controle lnkConsultas.
+        /// Controle btnCancelarNome.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkConsultas;
+        protected global::System.Web.UI.WebControls.Button btnCancelarNome;
 
         /// <summary>
-        /// Controle lnkRelatorios.
+        /// Controle dvConsultaData.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkRelatorios;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvConsultaData;
 
         /// <summary>
-        /// Controle lnkSair.
+        /// Controle txtData.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkSair;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtData;
 
         /// <summary>
-        /// Controle ContentPlaceHolder1.
+        /// Controle btnBuscarData.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.Button btnBuscarData;
 
         /// <summary>
-        /// Controle scripts.
+        /// Controle btnCancelarData.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder scripts;
+        protected global::System.Web.UI.WebControls.Button btnCancelarData;
+
+        /// <summary>
+        /// Controle dvGrid.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvGrid;
+
+        /// <summary>
+        /// Controle grdPendencia.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdPendencia;
     }
 }

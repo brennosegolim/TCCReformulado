@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="col s8 offset-s3" style="margin-bottom:15px;">
                                     <div class="col s12">
-                                        <asp:LinkButton CssClass="orange-text" ID="lnkRecuperarSenha" OnClick="lnkRecuperarSenha_Click" runat="server">
+                                        <asp:LinkButton CssClass="orange-text" ID="lnkRecuperarSenha" OnClick="lnkRecuperarSenha_Click" runat="server" Visible="false">
                                             Esqueci minha senha
                                         </asp:LinkButton>
                                     </div>

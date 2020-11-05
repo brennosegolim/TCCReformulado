@@ -11,26 +11,8 @@ namespace CantinaCookBook
 {
 
 
-    public partial class MasterPage
+    public partial class sqlExecutor
     {
-
-        /// <summary>
-        /// Controle litNome.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litNome;
-
-        /// <summary>
-        /// Controle head.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
 
         /// <summary>
         /// Controle form.
@@ -51,84 +33,75 @@ namespace CantinaCookBook
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl menu;
 
         /// <summary>
-        /// Controle lnkHome.
+        /// Controle dvPanels.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkHome;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvPanels;
 
         /// <summary>
-        /// Controle lnkVendas.
+        /// Controle dvSucesso.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkVendas;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvSucesso;
 
         /// <summary>
-        /// Controle lnkPagamento.
+        /// Controle dvAlerta.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkPagamento;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvAlerta;
 
         /// <summary>
-        /// Controle lnkCadastros.
+        /// Controle txtSql.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkCadastros;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtSql;
 
         /// <summary>
-        /// Controle lnkConsultas.
+        /// Controle btnConsultar.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkConsultas;
+        protected global::System.Web.UI.WebControls.Button btnConsultar;
 
         /// <summary>
-        /// Controle lnkRelatorios.
+        /// Controle btnExecutar.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkRelatorios;
+        protected global::System.Web.UI.WebControls.Button btnExecutar;
 
         /// <summary>
-        /// Controle lnkSair.
+        /// Controle btnLimpar.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkSair;
+        protected global::System.Web.UI.WebControls.Button btnLimpar;
 
         /// <summary>
-        /// Controle ContentPlaceHolder1.
+        /// Controle grdResultado.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
-
-        /// <summary>
-        /// Controle scripts.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder scripts;
+        protected global::System.Web.UI.WebControls.GridView grdResultado;
     }
 }
