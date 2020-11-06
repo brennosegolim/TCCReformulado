@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -45,7 +47,6 @@ namespace CantinaCookBook
             }
 
         }
-
 
         #region Métodos de aviso.
         private void msgAlerta(string mensagem)
@@ -153,5 +154,40 @@ namespace CantinaCookBook
 
             msgEsconder();
         }
+
+        protected void btnVoltar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("View/UserHome.aspx");
+        }
+
+        protected void btnExportar_Click(object sender, EventArgs e)
+        {
+
+            string sql = txtSql.Value;
+            DateTime data = new DateTime();
+
+            if(!sql.Equals("")){
+
+                MemoryStream ms = new MemoryStream();
+                TextWriter tw = new StreamWriter(ms);
+                tw.WriteLine(sql);
+                tw.Flush();
+                byte[] bytes = ms.ToArray();
+                ms.Close();
+
+                Response.Clear();
+                Response.ContentType = "application/force-download";
+                Response.AddHeader("content-disposition", "attachment;    filename=Query_" + data.ToString("dd_MM_yyyy") + ".sql");
+                Response.BinaryWrite(bytes);
+                Response.End();
+
+            }
+            else
+            {
+                msgAlerta("Atenção para exportar o documento digite uma seleção válida");
+            }
+
+        }
+
     }
 }

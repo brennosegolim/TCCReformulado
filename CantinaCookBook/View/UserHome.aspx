@@ -143,6 +143,18 @@
 
         });
 
+        document.onkeyup = function (e) {
+
+            if (e.ctrlKey && e.altKey && e.which == 89) {
+
+                $("#ContentPlaceHolder1_btnSql").click();
+
+            } 
+
+        };
+
+        $("#ContentPlaceHolder1_btnSql").hide();
+
         $('.dinheiro').mask('#.##0,00', { reverse: true });
 
     </script>

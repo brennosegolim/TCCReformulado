@@ -43,17 +43,22 @@
                 </div>
                 <div style="margin-left:25px;">
                     <div class="row">
-                        <div class="input-field col s12">
-                            <textarea id="txtSql" style="width:100%;min-height:200px;" runat="server"></textarea>
-                            <label for="txtSql">Comando SQL</label>
+                        <div class="col s1">
+                            <asp:Button ID="btnVoltar" runat="server" Text="Voltar" OnClick="btnVoltar_Click" />
                         </div>
                     </div>
-                    <div class="row" >
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="txtSql" style="width:100%;min-height:200px;" runat="server" placeholder="Consulta"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
                         <asp:Button ID="btnConsultar" runat="server" Text="Consultar" OnClick="btnConsultar_Click" />
                         <asp:Button ID="btnExecutar"  runat="server" Text="Executar"  OnClick="btnExecutar_Click"  />
                         <asp:Button ID="btnLimpar"    runat="server" Text="Limpar"    OnClick="btnLimpar_Click"    />
+                        <button     id="btnExportar"  runat="server" onserverclick="btnExportar_Click">Exportar<i class="material-icons right" style="font-size:16px;">file_download</i></button>
                     </div>
-                    <div class="row" id="dvResultado">
+                    <div class="row" id="dvResultado" style="overflow:auto;">
                         <asp:GridView ID="grdResultado" runat="server" AutoGenerateColumns="true">
                         </asp:GridView>
                     </div>
@@ -72,6 +77,12 @@
                     document.addEventListener('DOMContentLoaded', function () {
                         var elems = document.querySelectorAll('.dropdown-trigger');
                         var instances = M.Dropdown.init(elems, options);
+                    });
+
+                    $(document).ready(function () {
+
+                        setTimeout(function () { $("#dvPanels").hide(); }, 5000);
+
                     });
 
                 }

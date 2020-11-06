@@ -212,5 +212,6 @@ namespace CantinaCookBook.View
             grdPendencia.PageIndex = e.NewPageIndex;
             carregarGridPendencias(txtNome.Value, txtData.Value);
         }
+
     }
 }
